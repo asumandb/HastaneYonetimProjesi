@@ -1,0 +1,291 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+    }
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    #addPatientBtn {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    #addPatientBtn:hover {
+        background: #0056b3;
+    }
+    #patientsTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: #fafafa;
+    }
+    #patientsTable th, #patientsTable td {
+        padding: 12px 10px;
+        border: 1px solid #e0e0e0;
+        text-align: left;
+    }
+    #patientsTable th {
+        background: #f0f0f0;
+    }
+    #successMsg {
+        margin-bottom: 20px;
+        padding: 10px;
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 5px;
+        text-align: center;
+    }
+    #patientModal {
+        min-width: 320px;
+        max-width: 350px;
+        display: none;
+        border: 1px solid #ccc;
+        padding: 24px 18px 18px 18px;
+        background: #fff;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 1000;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    #patientModal input[type="text"],
+    #patientModal input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 15px;
+    }
+    #savePatientBtn, #cancelPatientBtn {
+        padding: 8px 18px;
+        border: none;
+        border-radius: 4px;
+        font-size: 15px;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+    #savePatientBtn {
+        background: #28a745;
+        color: #fff;
+    }
+    #savePatientBtn:hover {
+        background: #218838;
+    }
+    #cancelPatientBtn {
+        background: #dc3545;
+        color: #fff;
+    }
+    #cancelPatientBtn:hover {
+        background: #b52a37;
+    }
+    #modalOverlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.3);
+        z-index: 999;
+    }
+</style>
+<div class="container">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+        <button id="addPatientBtn" type="button">Hasta Ekle</button>
+    </div>
+
+    <div id="successMsg" style="display:none;">Başarıyla kaydedildi!</div>
+
+    <table id="patientsTable">
+        <thead>
+            <tr>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Giriş Tarihi</th>
+                <th>Çıkış Tarihi</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Hastalar buraya gelecek -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Hasta Ekle Modalı -->
+<div id="modalOverlay"></div>
+<div id="patientModal">
+    <input type="hidden" id="patientId">
+    <input type="text" id="firstName" placeholder="Ad">
+    <input type="text" id="lastName" placeholder="Soyad">
+    <input type="email" id="email" placeholder="E-posta">
+    <input type="text" id="phone" placeholder="Telefon">
+    <input type="text" id="tcNumber" placeholder="TC Kimlik No">
+    <input type="date" id="dateOfBirth" placeholder="Doğum Tarihi">
+    <input type="date" id="entryDate">
+    <input type="date" id="exitDate">
+    <div style="text-align:right;">
+        <button id="savePatientBtn" type="button">Kaydet</button>
+        <button id="cancelPatientBtn" type="button">İptal</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!(/^GET|HEAD|OPTIONS|TRACE$/i.test(settings.type)) && !this.crossDomain) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+        }
+    }
+});
+
+function loadPatients() {
+    $.get('/patients/', function(data) {
+        let rows = '';
+        data.patients.forEach(function(p) {
+            rows += `<tr>
+                <td>${p.first_name}</td>
+                <td>${p.last_name}</td>
+                <td>${p.entry_date}</td>
+                <td>${p.exit_date || ''}</td>
+                <td><button class="editBtn" data-id="${p.id}" data-first_name="${p.first_name}" data-last_name="${p.last_name}" data-entry_date="${p.entry_date}" data-exit_date="${p.exit_date || ''}">Düzenle</button></td>
+            </tr>`;
+        });
+        $('#patientsTable tbody').html(rows);
+    });
+}
+
+function showModal(patient) {
+    if (patient) {
+        $('#patientId').val(patient.id);
+        $('#firstName').val(patient.first_name);
+        $('#lastName').val(patient.last_name);
+        $('#email').val(patient.email);
+        $('#phone').val(patient.phone);
+        $('#tcNumber').val(patient.tc_number);
+        $('#dateOfBirth').val(patient.date_of_birth);
+        $('#entryDate').val(patient.entry_date);
+        $('#exitDate').val(patient.exit_date);
+    } else {
+        $('#patientId').val('');
+        $('#firstName').val('');
+        $('#lastName').val('');
+        $('#email').val('');
+        $('#phone').val('');
+        $('#tcNumber').val('');
+        $('#dateOfBirth').val('');
+        $('#entryDate').val('');
+        $('#exitDate').val('');
+    }
+    $('#modalOverlay').fadeIn(100);
+    $('#patientModal').fadeIn(200);
+}
+
+function hideModal() {
+    $('#patientModal').fadeOut(150);
+    $('#modalOverlay').fadeOut(100);
+}
+
+$(document).ready(function() {
+    loadPatients();
+
+    $('#addPatientBtn').off('click').on('click', function(e) {
+        e.preventDefault();
+        showModal(null);
+    });
+
+    $('#cancelPatientBtn').off('click').on('click', function(e) {
+        e.preventDefault();
+        hideModal();
+    });
+
+    $('#modalOverlay').off('click').on('click', function() {
+        hideModal();
+    });
+
+    $('#savePatientBtn').off('click').on('click', function(e) {
+        e.preventDefault();
+        var patientId = $('#patientId').val();
+        var url = '/patients/';
+        var type = 'POST';
+        if (patientId) {
+            url = `/patients/${patientId}/update/`;
+            type = 'POST'; // Django için PUT yerine POST kullanıyoruz
+        }
+        $.ajax({
+            url: url,
+            type: type,
+            data: JSON.stringify({
+                name: $('#firstName').val(),
+                surname: $('#lastName').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                tc_number: $('#tcNumber').val(),
+                date_of_birth: $('#dateOfBirth').val()
+            }),
+            contentType: 'application/json',
+            success: function(response) {
+                $('#successMsg').show().delay(2000).fadeOut();
+                hideModal();
+                loadPatients();
+            }
+        });
+    });
+
+    $(document).on('click', '.editBtn', function() {
+        const patient = {
+            id: $(this).data('id'),
+            first_name: $(this).data('first_name'),
+            last_name: $(this).data('last_name'),
+            email: $(this).data('email'),
+            phone: $(this).data('phone'),
+            tc_number: $(this).data('tc_number'),
+            date_of_birth: $(this).data('date_of_birth'),
+            entry_date: $(this).data('entry_date'),
+            exit_date: $(this).data('exit_date')
+        };
+        showModal(patient);
+    });
+});
+</script>
+{% endblock %}
+</body>

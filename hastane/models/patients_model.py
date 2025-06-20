@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+
 class Patients(models.Model):
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
@@ -22,3 +23,5 @@ class Patients(models.Model):
         return self.tc_number
         return self.date_of_birth
         return self.id
+    
+        
