@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from .clinic_model import Clinic
 
 class Doctors(models.Model):
     name = models.CharField(max_length=100)
