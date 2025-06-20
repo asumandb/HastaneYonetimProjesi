@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Kontrol Paneli{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background: #0578dd;
+            color: #fff;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2rem;
+            flex-shrink: 0;
+        }
+        .sidebar-logo-circle {
+            width: 100px;
+            height: 100px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .sidebar-logo-circle img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: #fff;
+            padding: 8px;
+        }
+        .sidebar-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .sidebar-menu a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 12px 0 12px 32px;
+            border-radius: 24px 0 0 24px;
+            margin-left: 12px;
+            display: flex;
+            align-items: center;
+            color: #fff !important;
+            transition: background 0.2s, color 0.2s;
+            margin-right: 16px;
+            background: transparent !important;
+        }
+        .sidebar-menu a:hover {
+            background: rgba(255,255,255,0.08) !important;
+            color: #fff !important;
+            transform: translateX(5px);
+        }
+        /* Tüm ikonlar whitesmoke */
+        .icon-whitesmoke { color: whitesmoke !important; }
+        .main-content {
+            flex-grow: 1;
+            background-color: #f8f9fa;
+            padding: 32px;
+        }
+        @media (max-width: 900px) {
+            .sidebar { width: 70px; }
+            .sidebar-menu a { font-size: 0; padding-left: 0; justify-content: center; }
+            .sidebar-menu a i { font-size: 1.5rem; }
+            .sidebar-logo-circle { width: 60px; height: 60px; }
+            .sidebar-logo-circle img { width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo-circle">
+                <img src="{% static 'logo.jpg' %}" alt="Logo">
+            </div>
+            <nav class="sidebar-menu">
+                <a href="{% url 'patient_registration' %}"><i class="fa-solid fa-user-injured me-2 icon-whitesmoke"></i> Hastalar</a>
+                <a href="{% url 'polyclinics' %}"><i class="fa-solid fa-hospital me-2 icon-whitesmoke"></i> Poliklinikler</a>
+                <a href="{% url 'doctor_create' %}"><i class="fa-solid fa-user-doctor me-2 icon-whitesmoke"></i> Doktorlar</a>
+                <a href="{% url 'appointments' %}"><i class="fa-solid fa-calendar-check me-2 icon-whitesmoke"></i> Randevular</a>
+                <a href="{% url 'prescriptions' %}"><i class="fa-solid fa-prescription-bottle-medical me-2 icon-whitesmoke"></i> Reçeteler</a>
+                <a href="{% url 'beds' %}"><i class="fa-solid fa-bed me-2 icon-whitesmoke"></i> Yataklar</a>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="main-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    {% block script %}
+  <script>
+
+  </script>
+  {% endblock %}
+</body>
+</html>
