@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'hastane_yonetim.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hastane_yonetimi',
+        'USER': 'root',
+        'PASSWORD': '',  # XAMPP'da genelde boştur
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
