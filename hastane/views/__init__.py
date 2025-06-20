@@ -1,0 +1,3 @@
+from .doctor_views import doctor_create
+from .clinic_views import clinic_create, clinic_list, clinic_detail, clinic_update, clinic_delete, get_available_doctors, assign_doctors_modal, assign_doctors_to_clinic
+from .appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, 
