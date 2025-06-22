@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Randevular{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Randevular</h2>
+    <!-- Modalı açan buton -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+        <i class="fa fa-plus me-1"></i> Randevu Ekle
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="appointmentModalLabel">Randevu Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+      </div>
+      <div class="modal-body" id="appointmentModalBody">
+        <!-- Form buraya AJAX ile yüklenecek -->
+        <div class="text-center text-secondary py-5">
+            <div class="spinner-border" role="status"></div>
+            <div>Yükleniyor...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Buraya randevu listesi/tablosu gelecek -->
+<div id="calendar"></div>
+{% endblock %}
+
+{% block script %}
+<!-- FullCalendar CSS ve JS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Modal açıldığında formu yükle
+    $('#appointmentModal').on('show.bs.modal', function () {
+        $("#appointmentModalBody").load("{% url 'appointment_create' %} #appointment-form", function(){
+            // Form yüklendikten sonra doktor uygunluk kontrolü
+            $(document).on('change', '#id_doctor, #id_date, #id_time', function() {
+                var doctor = $('#id_doctor').val();
+                var date = $('#id_date').val();
+                var time = $('#id_time').val();
+                if(doctor && date && time) {
+                    $.ajax({
+                        url: '{% url "doctor_availability_check" 0 %}'.replace('0', doctor),
+                        data: {date: date, time: time},
+                        success: function(data) {
+                            if(data.available) {
+                                $('#doctor-availability-msg').remove();
+                                $('#id_time').after('<div id="doctor-availability-msg" class="text-success">Doktor uygun.</div>');
+                            } else {
+                                $('#doctor-availability-msg').remove();
+                                $('#id_time').after('<div id="doctor-availability-msg" class="text-danger">Doktor bu saatte meşgul!</div>');
+                            }
+                        }
+                    });
+                } else {
+                    $('#doctor-availability-msg').remove();
+                }
+            });
+
+            // Form submit işlemi (AJAX)
+            $('#appointment-form').on('submit', function(e){
+                e.preventDefault();
+                var formData = $(this).serialize();
+                var $form = $(this);
+                $.ajax({
+                    url: $form.attr('action'),
+                    method: $form.attr('method'),
+                    data: formData,
+                    success: function(response){
+                        if(response.success){
+                            $('#appointmentModal').modal('hide');
+                            // Takvimi güncelle
+                            if(window.calendar) window.calendar.refetchEvents();
+                        } else if(response.html) {
+                            // Hatalıysa formu tekrar göster
+                            $('#appointmentModalBody').html(response.html);
+                        } else {
+                            // Genel hata
+                            alert('Bir hata oluştu.');
+                        }
+                    },
+                    error: function(){
+                        alert('Sunucu hatası!');
+                    }
+                });
+            });
+        });
+    });
+
+    // FullCalendar başlat
+    var calendarEl = document.getElementById('calendar');
+    if(calendarEl) {
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'tr',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: {
+                url: '{% url "appointment_list_json" %}',
+                failure: function() {
+                    alert('Randevular yüklenemedi!');
+                }
+            },
+            eventClick: function(info) {
+                // Randevu detayını gösterebilirsin
+                alert('Randevu: ' + info.event.title);
+            }
+        });
+        calendar.render();
+    }
+});
+</script>
+{% endblock %}
