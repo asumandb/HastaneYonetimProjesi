@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, date
 from ..models.appointments_model import Appointment
 from ..models.doctors_model import Doctors
 from ..models.patients_model import Patients
+from django.template.loader import render_to_string
 
 # Randevu takvimi görüntüleme
 def appointment_calendar(request):
@@ -45,7 +46,7 @@ def appointment_calendar(request):
     # Doktorları al (filtreleme için)
     doctors = Doctors.objects.all()
     
-    return render(request, 'hastane/appointment_calendar.html', {
+    return render(request, 'appointments.html', {
         'calendar_days': calendar_days,
         'current_date': current_date,
         'doctors': doctors,
@@ -74,7 +75,7 @@ def day_appointments(request, year, month, day):
         if time_str in time_slots:
             time_slots[time_str].append(appointment)
     
-    return render(request, 'hastane/day_appointments.html', {
+    return render(request, 'appointments.html', {
         'appointment_date': appointment_date,
         'time_slots': time_slots,
         'appointments': appointments,
@@ -173,25 +174,24 @@ def get_doctor_available_slots(request, doctor_id):
     })
 
 # Randevu oluşturma (uygunluk kontrolü ile)
-"""def create_appointment(request):
+def appointment_create(request):
     if request.method == 'POST':
         try:
             patient_id = request.POST.get('patient')
             doctor_id = request.POST.get('doctor')
             appointment_date = request.POST.get('date')
             appointment_time = request.POST.get('time')
-            
+
             # Uygunluk kontrolü
             existing_appointment = Appointment.objects.filter(
                 doctor_id=doctor_id,
                 date=appointment_date,
                 time=appointment_time
             ).first()
-            
+
             if existing_appointment:
-                messages.error(request, 'Bu saatte doktorun başka bir randevusu var.')
-                return redirect('appointment_calendar')
-            
+                return JsonResponse({'success': False, 'error': 'Bu saatte doktorun başka bir randevusu var.'})
+
             # Randevu oluştur
             appointment = Appointment.objects.create(
                 patient_id=patient_id,
@@ -199,22 +199,20 @@ def get_doctor_available_slots(request, doctor_id):
                 date=appointment_date,
                 time=appointment_time
             )
-            
-            messages.success(request, f'Randevu başarıyla oluşturuldu: {appointment}')
-            return redirect('appointment_calendar')
-            
+
+            return JsonResponse({'success': True})
         except Exception as e:
-            messages.error(request, f'Randevu oluşturulurken hata oluştu: {str(e)}')
-    
+            return JsonResponse({'success': False, 'error': f'Randevu oluşturulurken hata oluştu: {str(e)}'})
+
     # GET isteği için gerekli verileri al
     patients = Patients.objects.all()
     doctors = Doctors.objects.all()
-    
-    return render(request, 'hastane/create_appointment.html', {
+    html = render_to_string('hastane/appointment_form.html', {
         'patients': patients,
         'doctors': doctors,
-        'title': 'Yeni Randevu Oluştur'
-    })"""
+        'title': 'Yeni Randevu Ekle'
+    }, request=request)
+    return JsonResponse({'html': html})
 
 # Randevu silme
 def delete_appointment(request, appointment_id):
@@ -230,7 +228,7 @@ def delete_appointment(request, appointment_id):
         except Exception as e:
             messages.error(request, f'Randevu silinirken hata oluştu: {str(e)}')
     
-    return render(request, 'hastane/confirm_delete_appointment.html', {
+    return render(request, 'appointments.html', {
         'appointment': appointment,
         'title': 'Randevu Sil'
     })
@@ -252,8 +250,20 @@ def doctor_appointments(request, doctor_id):
     
     appointments = appointments.order_by('date', 'time')
     
-    return render(request, 'hastane/doctor_appointments.html', {
+    return render(request, 'appointments.html', {
         'doctor': doctor,
         'appointments': appointments,
         'title': f'{doctor.name} {doctor.surname} - Randevular'
     })
+
+def appointment_list_json(request):
+    appointments = Appointment.objects.all()
+    events = []
+    for appointment in appointments:
+        events.append({
+            "id": appointment.id,
+            "title": f"{appointment.patient.name} {appointment.patient.surname} - {appointment.doctor.name} {appointment.doctor.surname}",
+            "start": f"{appointment.date}T{appointment.time}",
+            "end": f"{appointment.date}T{appointment.time}",
+        })
+    return JsonResponse(events, safe=False)
