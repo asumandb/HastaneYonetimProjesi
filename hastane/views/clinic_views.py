@@ -30,14 +30,14 @@ def clinic_create(request):
         except Exception as e:
             messages.error(request, f'Poliklinik oluşturulurken hata oluştu: {str(e)}')
     
-    return render(request, 'hastane/clinic_form.html', {
+    return render(request, 'clinic_form.html', {
         'title': 'Yeni Poliklinik Oluştur'
     })
 
 # READ - Poliklinik listesi
 def clinic_list(request):
     clinics = Clinic.objects.all()
-    return render(request, 'hastane/clinic_list.html', {
+    return render(request, 'polyclinics.html', {
         'clinics': clinics,
         'title': 'Poliklinikler'
     })
@@ -47,7 +47,7 @@ def clinic_detail(request, clinic_id):
     clinic = get_object_or_404(Clinic, id=clinic_id)
     doctors = Doctors.objects.filter(clinic=clinic)
     
-    return render(request, 'hastane/clinic_detail.html', {
+    return render(request, 'clinic_detail.html', {
         'clinic': clinic,
         'doctors': doctors,
         'title': f'{clinic.name} Detayları'
@@ -76,7 +76,7 @@ def clinic_update(request, clinic_id):
         except Exception as e:
             messages.error(request, f'Poliklinik güncellenirken hata oluştu: {str(e)}')
     
-    return render(request, 'hastane/clinic_form.html', {
+    return render(request, 'clinic_form.html', {
         'clinic': clinic,
         'title': f'{clinic.name} Güncelle'
     })
@@ -95,7 +95,7 @@ def clinic_delete(request, clinic_id):
         except Exception as e:
             messages.error(request, f'Poliklinik silinirken hata oluştu: {str(e)}')
     
-    return render(request, 'hastane/clinic_confirm_delete.html', {
+    return render(request, 'clinic_confirm_delete.html', {
         'clinic': clinic,
         'title': f'{clinic.name} Sil'
     })

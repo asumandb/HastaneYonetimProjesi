@@ -15,17 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hastane.views.patient_registration_views import patient_registration_view, patient_list
+from hastane.views.patient_registration_views import patient_registration_view, patient_list, patient_update
 from hastane.views.clinic_views import clinic_create, clinic_list, clinic_update, clinic_delete, clinic_detail, get_available_doctors, assign_doctors_modal, assign_doctors_to_clinic
 from hastane.views.doctor_views import doctor_create, doctor_list
 from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json
-from hastane.views.prescriptions_views import prescriptions_view
+from hastane.views.prescriptions_views import prescriptions_view, api_appointments, api_prescriptions, api_add_prescription
 from hastane.views.beds_views import beds_view, bed_create, bed_update, bed_delete
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+from hastane.models.patients_model import Patients
+from hastane.views.polyclinic_api import polyclinic_api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hasta-kayit/', patient_registration_view, name='patient_registration'),
     path('patients/', patient_list, name='patient_list'),
+    path('patients/<int:patient_id>/update/', patient_update, name='patient_update'),
     path('poliklinikler/', clinic_list, name='polyclinics'),
     path('poliklinik/olustur/', clinic_create, name='clinic_create'),
     path('poliklinik/<int:clinic_id>/', clinic_detail, name='clinic_detail'),
@@ -50,5 +56,10 @@ urlpatterns = [
     path('yatak/ekle/', bed_create, name='bed_create'),
     path('yatak/guncelle/<int:bed_id>/', bed_update, name='bed_update'),
     path('yatak/sil/<int:bed_id>/', bed_delete, name='bed_delete'),
+    path('api/polyclinics/', polyclinic_api, name='polyclinic_api'),
+    path('api/appointments/', api_appointments, name='api_appointments'),
+    path('api/prescriptions/', api_prescriptions, name='api_prescriptions'),
+    path('api/prescriptions/add/', api_add_prescription, name='api_add_prescription'),
 ]
+
 
