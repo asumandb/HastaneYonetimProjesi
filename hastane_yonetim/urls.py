@@ -20,7 +20,7 @@ from hastane.views.clinic_views import clinic_create, clinic_list, clinic_update
 from hastane.views.doctor_views import doctor_create, doctor_list
 from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json
 from hastane.views.prescriptions_views import prescriptions_view
-from hastane.views.beds_views import beds_view, bed_create, bed_update, bed_delete
+from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -46,9 +46,11 @@ urlpatterns = [
     path('randevu/doktor/<int:doctor_id>/', doctor_appointments, name='doctor_appointments'),
     path('randevular/json/', appointment_list_json, name='appointment_list_json'),
     path('receteler/', prescriptions_view, name='prescriptions'),
-    path('yataklar/', beds_view, name='beds'),
-    path('yatak/ekle/', bed_create, name='bed_create'),
-    path('yatak/guncelle/<int:bed_id>/', bed_update, name='bed_update'),
-    path('yatak/sil/<int:bed_id>/', bed_delete, name='bed_delete'),
+    path('odalar/', room_list, name='room_list'),
+    path('oda/ekle/', add_room, name='add_room'),
+    path('oda/guncelle/<int:room_id>/', update_room, name='oda_guncelle'),
+    path('oda/sil/<int:room_id>/', delete_room, name='oda_sil'),
+    path('oda/dropdown/', room_dropdown, name='room_dropdown'),
+    path('oda/aciklama/<int:room_id>/', room_description, name='oda_aciklama'),
 ]
 
