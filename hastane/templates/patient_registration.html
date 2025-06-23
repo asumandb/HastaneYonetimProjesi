@@ -2,124 +2,22 @@
 {% load static %}
 
 {% block content %}
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f7f7f7;
-    }
-    .container {
-        max-width: 900px;
-        margin: 40px auto;
-        background: #fff;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    #addPatientBtn {
-        background: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 24px;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-    #addPatientBtn:hover {
-        background: #0056b3;
-    }
-    #patientsTable {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        background: #fafafa;
-    }
-    #patientsTable th, #patientsTable td {
-        padding: 12px 10px;
-        border: 1px solid #e0e0e0;
-        text-align: left;
-    }
-    #patientsTable th {
-        background: #f0f0f0;
-    }
-    #successMsg {
-        margin-bottom: 20px;
-        padding: 10px;
-        background: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-        border-radius: 5px;
-        text-align: center;
-    }
-    #patientModal {
-        min-width: 320px;
-        max-width: 350px;
-        display: none;
-        border: 1px solid #ccc;
-        padding: 24px 18px 18px 18px;
-        background: #fff;
-        position: fixed;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        z-index: 1000;
-        border-radius: 8px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-    }
-    #patientModal input[type="text"],
-    #patientModal input[type="date"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 15px;
-    }
-    #savePatientBtn, #cancelPatientBtn {
-        padding: 8px 18px;
-        border: none;
-        border-radius: 4px;
-        font-size: 15px;
-        margin-right: 8px;
-        cursor: pointer;
-    }
-    #savePatientBtn {
-        background: #28a745;
-        color: #fff;
-    }
-    #savePatientBtn:hover {
-        background: #218838;
-    }
-    #cancelPatientBtn {
-        background: #dc3545;
-        color: #fff;
-    }
-    #cancelPatientBtn:hover {
-        background: #b52a37;
-    }
-    #modalOverlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0,0,0,0.3);
-        z-index: 999;
-    }
-</style>
 <div class="container">
     <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
-        <button id="addPatientBtn" type="button">Hasta Ekle</button>
+        <button id="addPatientBtn" type="button" class="btn btn-primary">Hasta Ekle</button>
     </div>
 
-    <div id="successMsg" style="display:none;">Başarıyla kaydedildi!</div>
+    <div id="successMsg" style="display:none;" class="alert alert-success">Başarıyla kaydedildi!</div>
 
-    <table id="patientsTable">
+    <table id="patientsTable" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Ad</th>
                 <th>Soyad</th>
+                <th>Doğum Tarihi</th>
+                <th>TC Kimlik No</th>
+                <th>E-posta</th>
+                <th>Telefon</th>
                 <th>Giriş Tarihi</th>
                 <th>Çıkış Tarihi</th>
                 <th>İşlem</th>
@@ -132,20 +30,20 @@
 </div>
 
 <!-- Hasta Ekle Modalı -->
-<div id="modalOverlay"></div>
-<div id="patientModal">
+<div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:999;"></div>
+<div id="patientModal" style="display:none; min-width:320px; max-width:350px; border:1px solid #ccc; padding:24px 18px 18px 18px; background:#fff; position:fixed; top:20%; left:50%; transform:translate(-50%, 0); z-index:1000; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
     <input type="hidden" id="patientId">
-    <input type="text" id="firstName" placeholder="Ad">
-    <input type="text" id="lastName" placeholder="Soyad">
-    <input type="email" id="email" placeholder="E-posta">
-    <input type="text" id="phone" placeholder="Telefon">
-    <input type="text" id="tcNumber" placeholder="TC Kimlik No">
-    <input type="date" id="dateOfBirth" placeholder="Doğum Tarihi">
-    <input type="date" id="entryDate">
-    <input type="date" id="exitDate">
+    <input type="text" id="firstName" placeholder="Ad" class="form-control mb-2">
+    <input type="text" id="lastName" placeholder="Soyad" class="form-control mb-2">
+    <input type="email" id="email" placeholder="E-posta" class="form-control mb-2">
+    <input type="text" id="phone" placeholder="Telefon" class="form-control mb-2">
+    <input type="text" id="tcNumber" placeholder="TC Kimlik No" class="form-control mb-2">
+    <input type="date" id="dateOfBirth" placeholder="Doğum Tarihi" class="form-control mb-2">
+    <input type="date" id="entryDate" class="form-control mb-2">
+    <input type="date" id="exitDate" class="form-control mb-2">
     <div style="text-align:right;">
-        <button id="savePatientBtn" type="button">Kaydet</button>
-        <button id="cancelPatientBtn" type="button">İptal</button>
+        <button id="savePatientBtn" type="button" class="btn btn-success">Kaydet</button>
+        <button id="cancelPatientBtn" type="button" class="btn btn-danger">İptal</button>
     </div>
 </div>
 {% endblock %}
@@ -183,11 +81,26 @@ function loadPatients() {
         let rows = '';
         data.patients.forEach(function(p) {
             rows += `<tr>
-                <td>${p.first_name}</td>
-                <td>${p.last_name}</td>
-                <td>${p.entry_date}</td>
+                <td>${p.name}</td>
+                <td>${p.surname}</td>
+                <td>${p.date_of_birth || ''}</td>
+                <td>${p.tc_number || ''}</td>
+                <td>${p.email || ''}</td>
+                <td>${p.phone || ''}</td>
+                <td>${p.entry_date || ''}</td>
                 <td>${p.exit_date || ''}</td>
-                <td><button class="editBtn" data-id="${p.id}" data-first_name="${p.first_name}" data-last_name="${p.last_name}" data-entry_date="${p.entry_date}" data-exit_date="${p.exit_date || ''}">Düzenle</button></td>
+                <td><button class="editBtn" 
+                    data-id="${p.id}" 
+                    data-name="${p.name}" 
+                    data-surname="${p.surname}" 
+                    data-email="${p.email}" 
+                    data-phone="${p.phone}" 
+                    data-tc_number="${p.tc_number}" 
+                    data-date_of_birth="${p.date_of_birth}"
+                    data-entry_date="${p.entry_date || ''}"
+                    data-exit_date="${p.exit_date || ''}">
+                    Düzenle
+                </button></td>
             </tr>`;
         });
         $('#patientsTable tbody').html(rows);
@@ -197,8 +110,8 @@ function loadPatients() {
 function showModal(patient) {
     if (patient) {
         $('#patientId').val(patient.id);
-        $('#firstName').val(patient.first_name);
-        $('#lastName').val(patient.last_name);
+        $('#firstName').val(patient.name);
+        $('#lastName').val(patient.surname);
         $('#email').val(patient.email);
         $('#phone').val(patient.phone);
         $('#tcNumber').val(patient.tc_number);
@@ -274,8 +187,8 @@ $(document).ready(function() {
     $(document).on('click', '.editBtn', function() {
         const patient = {
             id: $(this).data('id'),
-            first_name: $(this).data('first_name'),
-            last_name: $(this).data('last_name'),
+            name: $(this).data('name'),
+            surname: $(this).data('surname'),
             email: $(this).data('email'),
             phone: $(this).data('phone'),
             tc_number: $(this).data('tc_number'),
