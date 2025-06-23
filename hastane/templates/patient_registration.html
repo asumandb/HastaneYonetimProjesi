@@ -33,14 +33,14 @@
 <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:999;"></div>
 <div id="patientModal" style="display:none; min-width:320px; max-width:350px; border:1px solid #ccc; padding:24px 18px 18px 18px; background:#fff; position:fixed; top:20%; left:50%; transform:translate(-50%, 0); z-index:1000; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
     <input type="hidden" id="patientId">
-    <input type="text" id="firstName" placeholder="Ad" class="form-control mb-2">
-    <input type="text" id="lastName" placeholder="Soyad" class="form-control mb-2">
-    <input type="email" id="email" placeholder="E-posta" class="form-control mb-2">
-    <input type="text" id="phone" placeholder="Telefon" class="form-control mb-2">
-    <input type="text" id="tcNumber" placeholder="TC Kimlik No" class="form-control mb-2">
-    <input type="date" id="dateOfBirth" placeholder="Doğum Tarihi" class="form-control mb-2">
-    <input type="date" id="entryDate" class="form-control mb-2">
-    <input type="date" id="exitDate" class="form-control mb-2">
+    <input type="text" id="firstName" placeholder="Ad">
+    <input type="text" id="lastName" placeholder="Soyad">
+    <input type="email" id="email" placeholder="E-posta">
+    <input type="text" id="phone" placeholder="Telefon">
+    <input type="text" id="tcNumber" placeholder="TC Kimlik No">
+    <input type="date" id="dateOfBirth" placeholder="Doğum Tarihi">
+    <input type="date" id="entryDate">
+    <input type="date" id="exitDate">
     <div style="text-align:right;">
         <button id="savePatientBtn" type="button" class="btn btn-success">Kaydet</button>
         <button id="cancelPatientBtn" type="button" class="btn btn-danger">İptal</button>
@@ -110,8 +110,8 @@ function loadPatients() {
 function showModal(patient) {
     if (patient) {
         $('#patientId').val(patient.id);
-        $('#firstName').val(patient.name);
-        $('#lastName').val(patient.surname);
+        $('#firstName').val(patient.first_name);
+        $('#lastName').val(patient.last_name);
         $('#email').val(patient.email);
         $('#phone').val(patient.phone);
         $('#tcNumber').val(patient.tc_number);
@@ -120,8 +120,8 @@ function showModal(patient) {
         $('#exitDate').val(patient.exit_date);
     } else {
         $('#patientId').val('');
-        $('#firstName').val('');
-        $('#lastName').val('');
+        $('#name').val('');
+        $('#surname').val('');
         $('#email').val('');
         $('#phone').val('');
         $('#tcNumber').val('');
@@ -162,18 +162,20 @@ $(document).ready(function() {
         var type = 'POST';
         if (patientId) {
             url = `/patients/${patientId}/update/`;
-            type = 'POST'; // Django için PUT yerine POST kullanıyoruz
+            type = 'POST';
         }
         $.ajax({
             url: url,
             type: type,
             data: JSON.stringify({
-                name: $('#firstName').val(),
-                surname: $('#lastName').val(),
+                name: $('#name').val(),
+                surname: $('#surname').val(),
                 email: $('#email').val(),
                 phone: $('#phone').val(),
                 tc_number: $('#tcNumber').val(),
-                date_of_birth: $('#dateOfBirth').val()
+                date_of_birth: $('#dateOfBirth').val(),
+                entry_date: $('#entryDate').val(),
+                exit_date: $('#exitDate').val()
             }),
             contentType: 'application/json',
             success: function(response) {

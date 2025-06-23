@@ -10,6 +10,8 @@ class Patients(models.Model):
     image = models.ImageField(upload_to='patients_images/')
     tc_number = models.CharField(max_length=11)
     date_of_birth = models.DateField()
+    entry_date = models.DateField(null=True, blank=True)
+    exit_date = models.DateField(null=True, blank=True)
 
     class Meta:
         verbose_name = _("Hasta")

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Poliklinikler</h2>
+    <form id="addPolyclinicForm" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" id="polyclinicName" placeholder="Poliklinik Adı" required>
+            <button type="submit" class="btn btn-primary">Ekle</button>
+        </div>
+    </form>
+    <ul id="polyclinicList" class="list-group">
+        <!-- Poliklinikler burada listelenecek -->
+    </ul>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function fetchPolyclinics() {
+    $.get('/api/polyclinics/', function(data) {
+        const list = $('#polyclinicList');
+        list.empty();
+        data.forEach(function(item) {
+            list.append('<li class="list-group-item">' + item.name + '</li>');
+        });
+    });
+}
+
+$(document).ready(function() {
+    fetchPolyclinics();
+    $('#addPolyclinicForm').on('submit', function(e) {
+        e.preventDefault();
+        const name = $('#polyclinicName').val();
+        $.ajax({
+            url: '/api/polyclinics/',
+            method: 'POST',
+            data: { name: name },
+            headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+            success: function() {
+                $('#polyclinicName').val('');
+                fetchPolyclinics();
+            },
+            error: function() {
+                alert('Poliklinik eklenemedi!');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+
+</body>
