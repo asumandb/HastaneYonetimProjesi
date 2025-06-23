@@ -39,3 +39,7 @@ def doctor_create(request):
         'title': 'Yeni Doktor Ekle',
         'clinics': clinics
     })
+
+def doctor_list(request):
+    doctors = Doctors.objects.all()
+    return render(request, 'doctors.html', {'doctors': doctors, 'title': 'Doktorlar'})
