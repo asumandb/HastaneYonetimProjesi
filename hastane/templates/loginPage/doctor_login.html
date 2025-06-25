@@ -1,27 +1,98 @@
 {% extends "base_login.html" %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h2 class="mb-4 text-center">Doktor Girişi</h2>
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Kullanıcı Adı</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Şifre</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100">Giriş Yap</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<style>
+    body, .login-container {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .doctor-blur-bg {
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .doctor-blur-bg span {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.7;
+        background: #ffd49c;
+    }
+    .doctor-blur-bg .main { width: 900px; height: 900px; left: 30vw; top: 0vh; }
+    .doctor-blur-bg .side1 { width: 400px; height: 400px; left: 5vw; top: 60vh; opacity: 0.5; }
+    .doctor-blur-bg .side2 { width: 350px; height: 350px; left: 70vw; top: 60vh; opacity: 0.5; }
+    .doctor-login-card {
+        position: relative;
+        z-index: 1;
+        width: 350px;
+        padding: 2.5rem 2.2rem 2rem 2.2rem;
+        border-radius: 32px;
+        background: rgba(255,255,255,0.92);
+        box-shadow: 0 8px 32px 0 rgba(255, 212, 156, 0.25);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2.5px solid #ffd49c;
+        backdrop-filter: blur(2px);
+    }
+    .doctor-login-card .icon {
+        font-size: 3.2rem;
+        color: #ffd49c;
+        margin-bottom: 1.2rem;
+    }
+    .doctor-login-card h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0c167f;
+        margin-bottom: 1.2rem;
+    }
+    .doctor-login-card label {
+        color: #0c167f;
+        font-weight: 500;
+    }
+    .doctor-login-card .form-control {
+        border-radius: 16px;
+        border: 1.5px solid #ffd49c;
+        margin-bottom: 1.1rem;
+        font-size: 1.1rem;
+    }
+    .doctor-login-card .btn-success {
+        background: #ffd49c;
+        color: #0c167f;
+        border: none;
+        border-radius: 24px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 0.7rem 0;
+        transition: background 0.2s, color 0.2s;
+    }
+    .doctor-login-card .btn-success:hover {
+        background: #0c167f;
+        color: #fff;
+    }
+</style>
+<div class="doctor-blur-bg">
+    <span class="main"></span>
+    <span class="side1"></span>
+    <span class="side2"></span>
+</div>
+<div class="doctor-login-card">
+    <div class="icon"><i class="fa-solid fa-user-md"></i></div>
+    <h2>Doktor Girişi</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3 w-100">
+            <label for="username" class="form-label">Kullanıcı Adı</label>
+            <input type="text" class="form-control" id="username" name="username" required>
         </div>
-    </div>
+        <div class="mb-3 w-100">
+            <label for="password" class="form-label">Şifre</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Giriş Yap</button>
+    </form>
+</div>
 {% endblock %}
