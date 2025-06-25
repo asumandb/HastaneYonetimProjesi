@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Odalar{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Odalar</h2>
+    <button class="btn btn-primary" id="addBedBtn">
+        <i class="fa fa-plus me-1"></i> Oda Ekle
+    </button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Numara</th>
+            <th>Oda Tipi</th>
+            <th>Durum</th>
+            <th>Açıklama</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody id="bedsTableBody">
+        {% for room in rooms %}
+        <tr data-id="{{ room.id }}" data-description="{{ room.description|default:'' }}">
+            <td>{{ room.number }}</td>
+            <td>{{ room.room_type|default:'-' }}</td>
+            <td>{{ room.status }}</td>
+            <td>{{ room.description|default:'' }}</td>
+            <td>
+                <button class="btn btn-sm btn-warning editBedBtn" data-id="{{ room.id }}">Düzenle</button>
+                <button class="btn btn-sm btn-danger deleteBedBtn" data-id="{{ room.id }}">Sil</button>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">Kayıtlı oda yok.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="bedModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bedModalLabel">Oda Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+      </div>
+      <div class="modal-body">
+        <form id="bedForm">
+          <div id="formErrorMsg" class="alert alert-danger" style="display:none;"></div>
+          <div class="mb-3">
+            <label>Oda Numarası</label>
+            <input type="text" id="roomNumber" name="number" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label>Oda Tipi</label>
+            <select id="roomType" name="room_type" class="form-control" required>
+              <option value="tek">Tek Kişilik</option>
+              <option value="cift">Çift Kişilik</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Durum</label>
+            <select id="bedStatus" name="status" class="form-control" required>
+              <option value="boş">Boş</option>
+              <option value="dolu">Dolu</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>İşlemler</label>
+            <textarea id="bedDescription" name="description" class="form-control" placeholder="Açıklama giriniz" rows="4"></textarea>
+          </div>
+          <input type="hidden" id="roomId">
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).ready(function(){
+    function loadRooms() {
+        $.get('/odalar/', function(data) {
+            var options = '';
+            data.rooms.forEach(function(room) {
+                options += `<option value="${room.id}">${room.number}</option>`;
+            });
+            $('#bedRoom').html(options);
+        });
+    }
+
+    // Sadece bir tane click event!
+    $('#addBedBtn').click(function(){
+        $('#formErrorMsg').hide();
+        $('#roomNumber').val('');
+        $('#bedModalLabel').text('Oda Ekle');
+        $('#roomId').val('');
+        $('#roomType').val('tek');
+        $('#bedStatus').val('boş');
+        $('#bedDescription').val('');
+        $('#bedModal').modal('show');
+    });
+
+    function bindRoomEvents() {
+        $('.editBedBtn').off('click').on('click', function(){
+            $('#formErrorMsg').hide();
+            var row = $(this).closest('tr');
+            $('#bedModalLabel').text('Oda Güncelle');
+            $('#roomId').val(row.data('id'));
+            $('#roomNumber').val(row.find('td:eq(0)').text());
+            $('#roomType').val(row.find('td:eq(1)').text() === 'Çift Kişilik' ? 'cift' : 'tek');
+            $('#bedStatus').val(row.find('td:eq(2)').text());
+            $('#bedDescription').val(row.data('description') || '');
+            $('#bedModal').modal('show');
+        });
+        $('.deleteBedBtn').off('click').on('click', function(){
+            var row = $(this).closest('tr');
+            var roomId = row.data('id');
+            if(confirm('Bu odayı silmek istediğinize emin misiniz?')){
+                $.post('/oda/sil/' + roomId + '/', {}, function(response){
+                    if(response.success){
+                        row.remove();
+                    } else {
+                        alert(response.error || 'Bir hata oluştu.');
+                    }
+                });
+            }
+        });
+    }
+
+    bindRoomEvents();
+
+    // Form submit (ekle/güncelle)
+    $('#bedForm').submit(function(e){
+        e.preventDefault();
+        var roomId = $('#roomId').val();
+        var url = roomId ? '/oda/guncelle/' + roomId + '/' : '/oda/ekle/';
+        $.post(url, {
+            number: $('#roomNumber').val(),
+            room_type: $('#roomType').val(),
+            status: $('#bedStatus').val(),
+            description: $('#bedDescription').val()
+        }, function(response){
+            if(response.success){
+                if(!roomId) {
+                    // Yeni eklenen oda için tabloya satır ekle
+                    var room = response.room;
+                    var newRow = `
+                        <tr data-id="${room.id}" data-description="${room.description ? room.description.replace(/\"/g, '&quot;') : ''}">
+                            <td>${room.number}</td>
+                            <td>${room.room_type === 'cift' ? 'Çift Kişilik' : 'Tek Kişilik'}</td>
+                            <td>${room.status}</td>
+                            <td>${room.description ? room.description : ''}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning editBedBtn" data-id="${room.id}">Düzenle</button>
+                                <button class="btn btn-sm btn-danger deleteBedBtn" data-id="${room.id}">Sil</button>
+                            </td>
+                        </tr>
+                    `;
+                    $('#bedsTableBody').append(newRow);
+                    bindRoomEvents();
+                } else {
+                    // Güncellemede sayfayı yenile
+                    location.reload();
+                }
+                $('#bedModal').modal('hide');
+                $('#bedForm')[0].reset();
+            } else {
+                $('#formErrorMsg').text(response.error || 'Bir hata oluştu.').show();
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

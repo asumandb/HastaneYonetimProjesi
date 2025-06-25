@@ -4,4 +4,4 @@ from .patients_model import Patients
 from .appointments_model import Appointment
 from .prescriptions_model import Prescriptions
 from .bills_model import Bills
-from .beds_model import Beds
+from .rooms_model import Rooms
