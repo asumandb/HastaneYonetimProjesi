@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hastane.views.patient_registration_views import patient_registration_view, patient_list
+from hastane.views.patient_registration_views import patient_registration_view, patient_list, patient_update
 from hastane.views.clinic_views import clinic_create, clinic_list, clinic_update, clinic_delete, clinic_detail, get_available_doctors, assign_doctors_modal, assign_doctors_to_clinic
 from hastane.views.doctor_views import doctor_create, doctor_list
 from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json
+
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('hasta-kayit/', patient_registration_view, name='patient_registration'),
     path('patients/', patient_list, name='patient_list'),
+    path('patients/<int:patient_id>/update/', patient_update, name='patient_update'),
     path('poliklinikler/', clinic_list, name='polyclinics'),
     path('poliklinik/olustur/', clinic_create, name='clinic_create'),
     path('poliklinik/<int:clinic_id>/', clinic_detail, name='clinic_detail'),
@@ -52,5 +54,7 @@ urlpatterns = [
     path('oda/sil/<int:room_id>/', delete_room, name='oda_sil'),
     path('oda/dropdown/', room_dropdown, name='room_dropdown'),
     path('oda/aciklama/<int:room_id>/', room_description, name='oda_aciklama'),
+
 ]
+
 

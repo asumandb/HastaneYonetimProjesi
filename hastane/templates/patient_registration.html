@@ -120,8 +120,8 @@ function showModal(patient) {
         $('#exitDate').val(patient.exit_date);
     } else {
         $('#patientId').val('');
-        $('#firstName').val('');
-        $('#lastName').val('');
+        $('#name').val('');
+        $('#surname').val('');
         $('#email').val('');
         $('#phone').val('');
         $('#tcNumber').val('');
@@ -162,18 +162,20 @@ $(document).ready(function() {
         var type = 'POST';
         if (patientId) {
             url = `/patients/${patientId}/update/`;
-            type = 'POST'; // Django için PUT yerine POST kullanıyoruz
+            type = 'POST';
         }
         $.ajax({
             url: url,
             type: type,
             data: JSON.stringify({
-                name: $('#firstName').val(),
-                surname: $('#lastName').val(),
+                name: $('#name').val(),
+                surname: $('#surname').val(),
                 email: $('#email').val(),
                 phone: $('#phone').val(),
                 tc_number: $('#tcNumber').val(),
-                date_of_birth: $('#dateOfBirth').val()
+                date_of_birth: $('#dateOfBirth').val(),
+                entry_date: $('#entryDate').val(),
+                exit_date: $('#exitDate').val()
             }),
             contentType: 'application/json',
             success: function(response) {
