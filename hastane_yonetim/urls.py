@@ -62,5 +62,3 @@ urlpatterns = [
     path('', login_select_view, name='home'),
     path('', include('hastane.urls')),
 ]
-
-

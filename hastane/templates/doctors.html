@@ -5,37 +5,270 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="mb-0">Doktorlar</h2>
-    <a href="{% url 'doctor_create' %}" class="btn btn-primary">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDoctorModal">
         <i class="fa fa-plus me-1"></i> Doktor Ekle
-    </a>
+    </button>
 </div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Ad</th>
-            <th>Soyad</th>
-            <th>Branş</th>
-            <th>Email</th>
-            <th>Telefon</th>
-            <th>Klinik</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for doctor in doctors %}
-        <tr>
-            <td>{{ doctor.name }}</td>
-            <td>{{ doctor.surname }}</td>
-            <td>{{ doctor.speciality }}</td>
-            <td>{{ doctor.email }}</td>
-            <td>{{ doctor.phone }}</td>
-            <td>{{ doctor.clinic.name }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="6" class="text-center">Kayıtlı doktor yok.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<!-- Doktor Ekle Modal -->
+<div class="modal fade" id="addDoctorModal" tabindex="-1" aria-labelledby="addDoctorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="addDoctorForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="addDoctorModalLabel">Doktor Ekle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="doctorName" class="form-label">Ad</label>
+            <input type="text" class="form-control" id="doctorName" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="doctorSurname" class="form-label">Soyad</label>
+            <input type="text" class="form-control" id="doctorSurname" name="surname" required>
+          </div>
+          <div class="mb-3">
+            <label for="doctorEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="doctorEmail" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="doctorPhone" class="form-label">Telefon</label>
+            <input type="text" class="form-control" id="doctorPhone" name="phone" required>
+          </div>
+          <div class="mb-3">
+            <label for="doctorClinic" class="form-label">Klinik</label>
+            <select class="form-select" id="doctorClinic" name="clinic" required>
+              <option value="">Klinik Seçin</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="doctorImage" class="form-label">Resim</label>
+            <input type="file" class="form-control" id="doctorImage" name="image" accept="image/*">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Doktor Düzenle Modal -->
+<div class="modal fade" id="editDoctorModal" tabindex="-1" aria-labelledby="editDoctorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editDoctorForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="editDoctorModalLabel">Doktor Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editDoctorId" name="doctor_id">
+          <div class="mb-3">
+            <label for="editDoctorName" class="form-label">Ad</label>
+            <input type="text" class="form-control" id="editDoctorName" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="editDoctorSurname" class="form-label">Soyad</label>
+            <input type="text" class="form-control" id="editDoctorSurname" name="surname" required>
+          </div>
+          <div class="mb-3">
+            <label for="editDoctorEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="editDoctorEmail" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="editDoctorPhone" class="form-label">Telefon</label>
+            <input type="text" class="form-control" id="editDoctorPhone" name="phone" required>
+          </div>
+          <div class="mb-3">
+            <label for="editDoctorClinic" class="form-label">Klinik</label>
+            <select class="form-select" id="editDoctorClinic" name="clinic" required>
+              <option value="">Klinik Seçin</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editDoctorImage" class="form-label">Resim</label>
+            <input type="file" class="form-control" id="editDoctorImage" name="image" accept="image/*">
+            <img id="editDoctorImagePreview" src="" alt="" class="img-fluid mt-2" style="max-height:120px; display:none;">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="submit" class="btn btn-primary">Güncelle</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Doktorlar Kartları -->
+<div class="row g-4">
+  {% for doctor in doctors %}
+  <div class="col-md-4">
+    <div class="card h-100 shadow-sm">
+      {% if doctor.image %}
+      <img src="{{ doctor.image.url }}" class="card-img-top" alt="{{ doctor.name }} {{ doctor.surname }}" style="object-fit:cover; height:220px;">
+      {% else %}
+      <img src="https://via.placeholder.com/400x220?text=Doktor" class="card-img-top" alt="Doktor">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ doctor.name }} {{ doctor.surname }}</h5>
+        <p class="card-text mb-1"><strong>Email:</strong> {{ doctor.email }}</p>
+        <p class="card-text mb-1"><strong>Telefon:</strong> {{ doctor.phone }}</p>
+        <p class="card-text mb-1"><strong>Klinik:</strong> {{ doctor.clinic.name }}</p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <button class="btn btn-sm btn-warning" onclick="editDoctor({{ doctor.id }})"><i class="fa fa-edit"></i> Düzenle</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteDoctor({{ doctor.id }})"><i class="fa fa-trash"></i> Sil</button>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12">
+    <div class="alert alert-info text-center"><strong>Kayıtlı doktor yok.</strong></div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+// Klinik listesini doldur
+function loadClinics() {
+  fetch('/api/clinics/')
+    .then(response => response.json())
+    .then(data => {
+      const clinicSelect = document.getElementById('doctorClinic');
+      clinicSelect.innerHTML = '<option value="">Klinik Seçin</option>';
+      data.forEach(clinic => {
+        const option = document.createElement('option');
+        option.value = clinic.id;
+        option.textContent = clinic.name;
+        clinicSelect.appendChild(option);
+      });
+    });
+}
+
+document.getElementById('addDoctorModal').addEventListener('show.bs.modal', loadClinics);
+
+// Formu AJAX ile gönder
+const addDoctorForm = document.getElementById('addDoctorForm');
+addDoctorForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(addDoctorForm);
+  fetch('/doktor/olustur/', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': getCookie('csrftoken')
+    }
+  })
+  .then(response => {
+    if (response.redirected) {
+      window.location.href = response.url;
+    } else {
+      return response.text();
+    }
+  })
+  .then(data => {
+    // Başarılıysa modalı kapat ve sayfayı yenile
+    if (data) {
+      location.reload();
+    }
+  });
+});
+
+// CSRF token alma fonksiyonu
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+function editDoctor(id) {
+  // Klinik dropdown'u doldur
+  fetch('/api/clinics/')
+    .then(response => response.json())
+    .then(data => {
+      const clinicSelect = document.getElementById('editDoctorClinic');
+      clinicSelect.innerHTML = '<option value="">Klinik Seçin</option>';
+      data.forEach(clinic => {
+        const option = document.createElement('option');
+        option.value = clinic.id;
+        option.textContent = clinic.name;
+        clinicSelect.appendChild(option);
+      });
+      // Doktor bilgilerini çek
+      fetch(`/doktor/guncelle/${id}/`)
+        .then(response => response.json())
+        .then(doctor => {
+          document.getElementById('editDoctorId').value = doctor.id;
+          document.getElementById('editDoctorName').value = doctor.name;
+          document.getElementById('editDoctorSurname').value = doctor.surname;
+          document.getElementById('editDoctorEmail').value = doctor.email;
+          document.getElementById('editDoctorPhone').value = doctor.phone;
+          document.getElementById('editDoctorClinic').value = doctor.clinic;
+          if (doctor.image) {
+            document.getElementById('editDoctorImagePreview').src = doctor.image;
+            document.getElementById('editDoctorImagePreview').style.display = 'block';
+          } else {
+            document.getElementById('editDoctorImagePreview').style.display = 'none';
+          }
+          var editModal = new bootstrap.Modal(document.getElementById('editDoctorModal'));
+          editModal.show();
+        });
+    });
+}
+
+document.getElementById('editDoctorForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const id = document.getElementById('editDoctorId').value;
+  const formData = new FormData(this);
+  fetch(`/doktor/guncelle/${id}/`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRFToken': getCookie('csrftoken'),
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      location.reload();
+    } else {
+      alert('Güncelleme başarısız!');
+    }
+  });
+});
+
+function deleteDoctor(id) {
+  if (confirm('Bu doktoru silmek istediğinize emin misiniz?')) {
+    fetch(`/doktor/sil/${id}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': getCookie('csrftoken'),
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => {
+      if (response.ok) location.reload();
+      else alert('Silme işlemi başarısız!');
+    });
+  }
+}
+</script>
 {% endblock %}
