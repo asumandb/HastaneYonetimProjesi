@@ -1,0 +1,18 @@
+{% extends "base_login.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h2 class="mb-4">Giriş Türünü Seçin</h2>
+                        <a href="/login/admin/" class="btn btn-primary btn-lg w-100 mb-3">Admin Girişi</a>
+                        <a href="/login/doctor/" class="btn btn-success btn-lg w-100 mb-3">Doktor Girişi</a>
+                        <a href="/login/patient/" class="btn btn-info btn-lg w-100">Hasta Girişi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
