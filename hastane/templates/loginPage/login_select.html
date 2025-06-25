@@ -1,18 +1,135 @@
 {% extends "base_login.html" %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-body text-center">
-                        <h2 class="mb-4">Giriş Türünü Seçin</h2>
-                        <a href="/login/admin/" class="btn btn-primary btn-lg w-100 mb-3">Admin Girişi</a>
-                        <a href="/login/doctor/" class="btn btn-success btn-lg w-100 mb-3">Doktor Girişi</a>
-                        <a href="/login/patient/" class="btn btn-info btn-lg w-100">Hasta Girişi</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<style>
+    body, .login-container {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .blur-bg {
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .blur-bg span {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.7;
+        mix-blend-mode: lighten;
+    }
+    .blur-bg .color1 { background: #ffb9c9; width: 400px; height: 400px; left: 5vw; top: 10vh; }
+    .blur-bg .color2 { background: #ffd49c; width: 350px; height: 350px; left: 40vw; top: 5vh; }
+    .blur-bg .color3 { background: #0c167f; width: 300px; height: 300px; left: 70vw; top: 30vh; }
+    .blur-bg .color4 { background: #0578dd; width: 350px; height: 350px; left: 20vw; top: 50vh; }
+    .blur-bg .color5 { background: #08f5ff; width: 400px; height: 400px; left: 60vw; top: 60vh; }
+
+    .login-cards-row {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        width: 100vw;
+        min-height: 100vh;
+    }
+    .login-card {
+        width: 270px;
+        height: 320px;
+        border-radius: 32px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(2px);
+        border: 2px solid rgba(255,255,255,0.3);
+        text-align: center;
+    }
+    .login-card:hover {
+        transform: translateY(-10px) scale(1.04);
+        box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.25);
+    }
+    .login-card.admin {
+        border-color: #ffb9c9;
+    }
+    .login-card.doctor {
+        border-color: #ffd49c;
+    }
+    .login-card.patient {
+        border-color: #08f5ff;
+    }
+    .login-card .icon {
+        font-size: 3.5rem;
+        margin-bottom: 1.2rem;
+    }
+    .login-card.admin .icon { color: #ffb9c9; }
+    .login-card.doctor .icon { color: #ffd49c; }
+    .login-card.patient .icon { color: #08f5ff; }
+    .login-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.7rem;
+    }
+    .login-card p {
+        font-size: 1.05rem;
+        color: #444;
+        margin-bottom: 1.5rem;
+    }
+    .login-card a {
+        display: inline-block;
+        padding: 0.7rem 2.2rem;
+        border-radius: 24px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: #fff;
+        background: #0578dd;
+        transition: background 0.2s;
+    }
+    .login-card.admin a { background: #ffb9c9; color: #0c167f; }
+    .login-card.doctor a { background: #ffd49c; color: #0c167f; }
+    .login-card.patient a { background: #08f5ff; color: #0c167f; }
+    .login-card a:hover {
+        background: #0c167f;
+        color: #fff;
+    }
+    @media (max-width: 900px) {
+        .login-cards-row { flex-direction: column; gap: 2.5rem; }
+    }
+</style>
+<div class="blur-bg">
+    <span class="color1"></span>
+    <span class="color2"></span>
+    <span class="color3"></span>
+    <span class="color4"></span>
+    <span class="color5"></span>
+</div>
+<div class="login-cards-row">
+    <div class="login-card admin">
+        <div class="icon"><i class="fa-solid fa-user-shield"></i></div>
+        <h3>Admin Girişi</h3>
+        <p>Sistemi yönetmek için giriş yapın.</p>
+        <a href="/login/admin/">Giriş Yap</a>
     </div>
+    <div class="login-card doctor">
+        <div class="icon"><i class="fa-solid fa-user-md"></i></div>
+        <h3>Doktor Girişi</h3>
+        <p>Hastalarınızı ve reçetelerinizi yönetin.</p>
+        <a href="/login/doctor/">Giriş Yap</a>
+    </div>
+    <div class="login-card patient">
+        <div class="icon"><i class="fa-solid fa-user"></i></div>
+        <h3>Hasta Girişi</h3>
+        <p>Randevu alın ve reçetelerinizi görüntüleyin.</p>
+        <a href="/login/patient/">Giriş Yap</a>
+    </div>
+</div>
 {% endblock %}
