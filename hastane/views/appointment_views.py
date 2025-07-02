@@ -45,11 +45,13 @@ def appointment_calendar(request):
     
     # Doktorları al (filtreleme için)
     doctors = Doctors.objects.all()
+    patients = Patients.objects.all()
     
     return render(request, 'appointments.html', {
         'calendar_days': calendar_days,
         'current_date': current_date,
         'doctors': doctors,
+        'patients': patients,
         'title': 'Randevu Takvimi'
     })
 
@@ -74,6 +76,10 @@ def day_appointments(request, year, month, day):
         time_str = appointment.time.strftime('%H:%M')
         if time_str in time_slots:
             time_slots[time_str].append(appointment)
+    
+    # Doktorları al (filtreleme için)
+    doctors = Doctors.objects.all()
+    patients = Patients.objects.all()
     
     return render(request, 'appointments.html', {
         'appointment_date': appointment_date,

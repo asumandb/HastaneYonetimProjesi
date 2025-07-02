@@ -9,7 +9,6 @@ class Doctors(models.Model):
     phone = models.CharField(max_length=100)
     clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='doctors_images/')
-    speciality = models.CharField(max_length=100)
 
     class Meta:
         verbose_name = _("Doktor")
