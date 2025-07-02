@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from hastane.views.patient_registration_views import patient_registration_view, patient_list, patient_update
 from hastane.views.clinic_views import clinic_create, clinic_list, clinic_update, clinic_delete, clinic_detail, get_available_doctors, assign_doctors_modal, assign_doctors_to_clinic
 from hastane.views.doctor_views import doctor_create, doctor_list
@@ -22,6 +22,7 @@ from hastane.views.appointment_views import appointment_calendar, day_appointmen
 
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
+from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, patient_login_view, patient_register_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -54,7 +55,13 @@ urlpatterns = [
     path('oda/sil/<int:room_id>/', delete_room, name='oda_sil'),
     path('oda/dropdown/', room_dropdown, name='room_dropdown'),
     path('oda/aciklama/<int:room_id>/', room_description, name='oda_aciklama'),
-
+    path('login/', login_select_view, name='login_select'),
+    path('login/admin/', admin_login_view, name='admin_login'),
+    path('login/doctor/', doctor_login_view, name='doctor_login'),
+    path('login/patient/', patient_login_view, name='patient_login'),
+    path('register/', patient_register_view, name='patient_register'),
+    path('', login_select_view, name='home'),
+    path('', include('hastane.urls')),
 ]
 
 
