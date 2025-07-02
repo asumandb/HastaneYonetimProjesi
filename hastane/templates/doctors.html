@@ -123,8 +123,8 @@
         <p class="card-text mb-1"><strong>Klinik:</strong> {{ doctor.clinic.name }}</p>
       </div>
       <div class="card-footer d-flex justify-content-between">
-        <button class="btn btn-sm btn-warning" onclick="editDoctor({{ doctor.id }})"><i class="fa fa-edit"></i> Düzenle</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteDoctor({{ doctor.id }})"><i class="fa fa-trash"></i> Sil</button>
+        <button class="btn btn-sm btn-warning" onclick="editDoctor('{{ doctor.id }}')"><i class="fa fa-edit"></i> Düzenle</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteDoctor('{{ doctor.id }}')"><i class="fa fa-trash"></i> Sil</button>
       </div>
     </div>
   </div>
@@ -167,19 +167,15 @@ addDoctorForm.addEventListener('submit', function(e) {
       'X-CSRFToken': getCookie('csrftoken')
     }
   })
-  .then(response => {
-    if (response.redirected) {
-      window.location.href = response.url;
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      location.reload();
     } else {
-      return response.text();
+      alert(data.error || 'Kayıt başarısız!');
     }
   })
-  .then(data => {
-    // Başarılıysa modalı kapat ve sayfayı yenile
-    if (data) {
-      location.reload();
-    }
-  });
+  .catch(() => alert('Sunucu hatası!'));
 });
 
 // CSRF token alma fonksiyonu

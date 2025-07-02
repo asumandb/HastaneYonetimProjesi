@@ -8,35 +8,39 @@ from django.views.decorators.csrf import csrf_exempt
 def doctor_create(request):
     if request.method == 'POST':
         try:
-            # POST verilerini al
             name = request.POST.get('name')
             surname = request.POST.get('surname')
             email = request.POST.get('email')
             phone = request.POST.get('phone')
             clinic_id = request.POST.get('clinic')
-            speciality = request.POST.get('speciality')
             image = request.FILES.get('image')
-            
-            # Yeni doktor oluştur
+
+            # Zorunlu alan kontrolü
+            if not (name and surname and email and phone and clinic_id):
+                error_msg = 'Tüm alanları doldurun ve klinik seçin.'
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({'success': False, 'error': error_msg})
+                messages.error(request, error_msg)
+                return redirect('doctor_list')
+
             doctor = Doctors.objects.create(
                 name=name,
                 surname=surname,
                 email=email,
                 phone=phone,
                 clinic_id=clinic_id,
-                speciality=speciality,
                 image=image
             )
-            
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'success': True})
             messages.success(request, f'Doktor {doctor.name} {doctor.surname} başarıyla eklendi.')
             return redirect('doctor_list')
-            
         except Exception as e:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'success': False, 'error': str(e)})
             messages.error(request, f'Doktor eklenirken hata oluştu: {str(e)}')
-    
-    # GET isteği için clinic listesini al
+            return redirect('doctor_list')
     clinics = Clinic.objects.all()
-    
     return render(request, 'hastane/doctor_form.html', {
         'title': 'Yeni Doktor Ekle',
         'clinics': clinics
