@@ -22,7 +22,7 @@ from hastane.views.appointment_views import appointment_calendar, day_appointmen
 
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
-from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, patient_login_view
+from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, patient_login_view, patient_register_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -59,6 +59,7 @@ urlpatterns = [
     path('login/admin/', admin_login_view, name='admin_login'),
     path('login/doctor/', doctor_login_view, name='doctor_login'),
     path('login/patient/', patient_login_view, name='patient_login'),
+    path('register/', patient_register_view, name='patient_register'),
     path('', login_select_view, name='home'),
     path('', include('hastane.urls')),
 ]
