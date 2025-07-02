@@ -1,0 +1,114 @@
+{% extends "base_login.html" %}
+
+{% block content %}
+<style>
+    body, .login-container {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .patient-blur-bg {
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .patient-blur-bg span {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.7;
+        background: #08f5ff;
+    }
+    .patient-blur-bg .main { width: 900px; height: 900px; left: 30vw; top: 0vh; }
+    .patient-blur-bg .side1 { width: 400px; height: 400px; left: 5vw; top: 60vh; opacity: 0.5; }
+    .patient-blur-bg .side2 { width: 350px; height: 350px; left: 70vw; top: 60vh; opacity: 0.5; }
+    .patient-register-card {
+        position: relative;
+        z-index: 1;
+        width: 400px;
+        padding: 2.5rem 2.2rem 2rem 2.2rem;
+        border-radius: 32px;
+        background: rgba(255,255,255,0.92);
+        box-shadow: 0 8px 32px 0 rgba(8, 245, 255, 0.18);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2.5px solid #08f5ff;
+        backdrop-filter: blur(2px);
+    }
+    .patient-register-card .icon {
+        font-size: 3.2rem;
+        color: #08f5ff;
+        margin-bottom: 1.2rem;
+    }
+    .patient-register-card h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0c167f;
+        margin-bottom: 1.2rem;
+    }
+    .patient-register-card label {
+        color: #0c167f;
+        font-weight: 500;
+    }
+    .patient-register-card .form-control {
+        border-radius: 16px;
+        border: 1.5px solid #08f5ff;
+        margin-bottom: 1.1rem;
+        font-size: 1.1rem;
+    }
+    .patient-register-card .btn-info {
+        background: #08f5ff;
+        color: #0c167f;
+        border: none;
+        border-radius: 24px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 0.7rem 0;
+        transition: background 0.2s, color 0.2s;
+    }
+    .patient-register-card .btn-info:hover {
+        background: #0c167f;
+        color: #fff;
+    }
+</style>
+<div class="patient-blur-bg">
+    <span class="main"></span>
+    <span class="side1"></span>
+    <span class="side2"></span>
+</div>
+<div class="patient-register-card">
+    <div class="icon"><i class="fa-solid fa-user-plus"></i></div>
+    <h2>Kayıt Ol</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3 w-100">
+            <label for="username" class="form-label">Kullanıcı Adı</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3 w-100">
+            <label for="first_name" class="form-label">Ad</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" required>
+        </div>
+        <div class="mb-3 w-100">
+            <label for="last_name" class="form-label">Soyad</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" required>
+        </div>
+        <div class="mb-3 w-100">
+            <label for="email" class="form-label">E-posta</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3 w-100">
+            <label for="password1" class="form-label">Şifre</label>
+            <input type="password" class="form-control" id="password1" name="password1" required>
+        </div>
+        <div class="mb-3 w-100">
+            <label for="password2" class="form-label">Şifre (Tekrar)</label>
+            <input type="password" class="form-control" id="password2" name="password2" required>
+        </div>
+        <button type="submit" class="btn btn-info w-100">Kayıt Ol</button>
+    </form>
+</div>
+{% endblock %} 
