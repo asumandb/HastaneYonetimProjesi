@@ -112,9 +112,9 @@
   <div class="col-md-4">
     <div class="card h-100 shadow-sm">
       {% if doctor.image %}
-      <img src="{{ doctor.image.url }}" class="card-img-top" alt="{{ doctor.name }} {{ doctor.surname }}" style="object-fit:cover; height:220px;">
+      <img src="{{ doctor.image.url }}" class="card-img-top rounded-circle object-fit-cover doctor-avatar" alt="{{ doctor.name }} {{ doctor.surname }}">
       {% else %}
-      <img src="https://via.placeholder.com/400x220?text=Doktor" class="card-img-top" alt="Doktor">
+      <img src="https://via.placeholder.com/220x220?text=Doktor" class="card-img-top rounded-circle object-fit-cover doctor-avatar" alt="Doktor">
       {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ doctor.name }} {{ doctor.surname }}</h5>
@@ -135,26 +135,41 @@
   {% endfor %}
 </div>
 
+<style>
+.doctor-avatar {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  margin: 0 auto 16px auto;
+  display: block;
+  border: 4px solid #f1f1f1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+</style>
+
 <script>
-// Klinik listesini doldur
-function loadClinics() {
+// Klinik listesini doldur (ekleme ve düzenleme için ortak fonksiyon)
+function loadClinics(selectId, selectedValue = null) {
   fetch('/api/clinics/')
     .then(response => response.json())
     .then(data => {
-      const clinicSelect = document.getElementById('doctorClinic');
+      const clinicSelect = document.getElementById(selectId);
       clinicSelect.innerHTML = '<option value="">Klinik Seçin</option>';
       data.forEach(clinic => {
         const option = document.createElement('option');
         option.value = clinic.id;
         option.textContent = clinic.name;
+        if (selectedValue && clinic.id == selectedValue) option.selected = true;
         clinicSelect.appendChild(option);
       });
     });
 }
 
-document.getElementById('addDoctorModal').addEventListener('show.bs.modal', loadClinics);
+document.getElementById('addDoctorModal').addEventListener('show.bs.modal', function() {
+  loadClinics('doctorClinic');
+});
 
-// Formu AJAX ile gönder
+// Doktor ekleme formu AJAX
 const addDoctorForm = document.getElementById('addDoctorForm');
 addDoctorForm.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -194,14 +209,15 @@ function getCookie(name) {
   return cookieValue;
 }
 
+// Düzenle butonuna tıklanınca modalı aç ve bilgileri doldur
 function editDoctor(id) {
-  // Klinik dropdown'u doldur
+  // Önce klinik listesini doldur, sonra doktoru getir
   fetch('/api/clinics/')
     .then(response => response.json())
-    .then(data => {
+    .then(clinics => {
       const clinicSelect = document.getElementById('editDoctorClinic');
       clinicSelect.innerHTML = '<option value="">Klinik Seçin</option>';
-      data.forEach(clinic => {
+      clinics.forEach(clinic => {
         const option = document.createElement('option');
         option.value = clinic.id;
         option.textContent = clinic.name;
