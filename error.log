@@ -1,0 +1,124 @@
+ERROR 2025-07-09 11:49:25,612 log Internal Server Error: /randevu/tablo/
+Traceback (most recent call last):
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\appointment_views.py", line 279, in appointment_table_partial
+    return render(request, 'hastane/appointment_table_partial.html', {'appointments': appointments})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: hastane/appointment_table_partial.html
+ERROR 2025-07-09 11:49:25,619 basehttp "GET /randevu/tablo/ HTTP/1.1" 500 82223
+ERROR 2025-07-09 13:16:53,347 log Internal Server Error: /randevu/ekle/
+Traceback (most recent call last):
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\appointment_views.py", line 239, in appointment_create
+    html = render_to_string('hastane/appointment_form.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: hastane/appointment_form.html
+ERROR 2025-07-09 13:16:53,347 basehttp "GET /randevu/ekle/?appointment_id=9 HTTP/1.1" 500 78506
+ERROR 2025-07-09 13:16:53,784 log Internal Server Error: /randevu/ekle/
+Traceback (most recent call last):
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\appointment_views.py", line 239, in appointment_create
+    html = render_to_string('hastane/appointment_form.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: hastane/appointment_form.html
+ERROR 2025-07-09 13:16:53,784 basehttp "GET /randevu/ekle/?appointment_id=9 HTTP/1.1" 500 78506
+ERROR 2025-07-09 13:16:53,984 log Internal Server Error: /randevu/ekle/
+Traceback (most recent call last):
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\appointment_views.py", line 239, in appointment_create
+    html = render_to_string('hastane/appointment_form.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: hastane/appointment_form.html
+ERROR 2025-07-09 13:16:53,984 basehttp "GET /randevu/ekle/?appointment_id=9 HTTP/1.1" 500 78506
+ERROR 2025-07-09 13:16:54,142 log Internal Server Error: /randevu/ekle/
+Traceback (most recent call last):
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\appointment_views.py", line 239, in appointment_create
+    html = render_to_string('hastane/appointment_form.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: hastane/appointment_form.html
+ERROR 2025-07-09 13:16:54,142 basehttp "GET /randevu/ekle/?appointment_id=9 HTTP/1.1" 500 78506
+ERROR 2025-07-09 13:16:57,321 log Internal Server Error: /randevu/ekle/
+Traceback (most recent call last):
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\appointment_views.py", line 239, in appointment_create
+    html = render_to_string('hastane/appointment_form.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: hastane/appointment_form.html
+ERROR 2025-07-09 13:16:57,321 basehttp "GET /randevu/ekle/?appointment_id=9 HTTP/1.1" 500 78526
+ERROR 2025-07-09 13:45:32,394 log Internal Server Error: /randevu/doktor-uygunluk/7/
+Traceback (most recent call last):
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\appointment_views.py", line 124, in check_doctor_availability
+    'speciality': doctor.speciality
+                  ^^^^^^^^^^^^^^^^^
+AttributeError: 'Doctors' object has no attribute 'speciality'
+ERROR 2025-07-09 13:45:32,512 basehttp "GET /randevu/doktor-uygunluk/7/?date=2025-07-31&time=11%3A00&appointment_id=9 HTTP/1.1" 500 69319
