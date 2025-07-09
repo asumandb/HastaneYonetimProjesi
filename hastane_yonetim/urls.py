@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from hastane.views.patient_registration_views import patient_registration_view, patient_list, patient_update
 from hastane.views.clinic_views import clinic_create, clinic_list, clinic_update, clinic_delete, clinic_detail, get_available_doctors, assign_doctors_modal, assign_doctors_to_clinic
-from hastane.views.doctor_views import doctor_create, doctor_list
+from hastane.views.doctor_views import doctor_create, doctor_list, doctor_update, doctor_delete
 from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json
-
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
 from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, patient_login_view, patient_register_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,6 +39,8 @@ urlpatterns = [
     path('poliklinik/<int:clinic_id>/doktor-atama/', assign_doctors_modal, name='assign_doctors_modal'),
     path('poliklinik/<int:clinic_id>/doktor-atama-form/', assign_doctors_to_clinic, name='assign_doctors_to_clinic'),
     path('doktor/olustur/', doctor_create, name='doctor_create'),
+    path('doktor/guncelle/<int:doctor_id>/', doctor_update, name='doctor_update'),
+    path('doktor/sil/<int:doctor_id>/', doctor_delete, name='doctor_delete'),
     path('doktorlar/', doctor_list, name='doctor_list'),
     path('randevular/', appointment_calendar, name='appointments'),
     path('randevu/ekle/', appointment_create, name='appointment_create'),
@@ -63,9 +66,6 @@ urlpatterns = [
     path('', login_select_view, name='home'),
     path('', include('hastane.urls')),
 ]
-
-from django.conf import settings
-from django.conf.urls.static import static
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
