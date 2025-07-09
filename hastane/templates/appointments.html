@@ -11,7 +11,7 @@
     </button>
 </div>
 
-<!-- Modal -->
+<!-- Randevu Ekle/Düzenle Modalı (Tek modal, hem ekle hem düzenle için kullanılacak) -->
 <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -22,12 +22,13 @@
       <div class="modal-body">
         <form id="appointment-form" method="post" action="{% url 'appointment_create' %}">
           {% csrf_token %}
+          <input type="hidden" id="id_appointment_id" name="appointment_id" value="">
           <div class="mb-3">
             <label for="id_patient" class="form-label">Hasta</label>
             <select id="id_patient" name="patient" class="form-select" required>
               <option value="">Seçiniz</option>
               {% for patient in patients %}
-                <option value="{{ patient.id }}">{{ patient.name }} {{ patient.surname }}</option>
+                <option value="{{ patient.id|stringformat:'s' }}">{{ patient.name }} {{ patient.surname }}</option>
               {% endfor %}
             </select>
           </div>
@@ -36,7 +37,7 @@
             <select id="id_doctor" name="doctor" class="form-select" required>
               <option value="">Seçiniz</option>
               {% for doctor in doctors %}
-                <option value="{{ doctor.id }}">{{ doctor.name }} {{ doctor.surname }}</option>
+                <option value="{{ doctor.id|stringformat:'s' }}">{{ doctor.name }} {{ doctor.surname }}</option>
               {% endfor %}
             </select>
           </div>
@@ -58,14 +59,71 @@
   </div>
 </div>
 
-<!-- Buraya randevu listesi/tablosu gelecek -->
-<div id="calendar"></div>
+<h4 class="mt-4">Tüm Randevular</h4>
+<p><strong>{{ appointments|length }} adet randevu var.</strong></p>
+<div id="appointment-table">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Hasta</th>
+        <th>Doktor</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in appointments %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ appointment.patient.name }} {{ appointment.patient.surname }}</td>
+        <td>{{ appointment.doctor.name }} {{ appointment.doctor.surname }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.time }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning edit-appointment-btn"
+            data-id="{{ appointment.id }}"
+            data-patient="{{ appointment.patient.id }}"
+            data-patient-name="{{ appointment.patient.name }} {{ appointment.patient.surname }}"
+            data-doctor="{{ appointment.doctor.id }}"
+            data-doctor-name="{{ appointment.doctor.name }} {{ appointment.doctor.surname }}"
+            data-date="{{ appointment.date|date:'Y-m-d' }}"
+            data-time="{{ appointment.time|time:'H:i' }}"
+          >Düzenle</button>
+          <button class="btn btn-sm btn-danger delete-appointment-btn" data-id="{{ appointment.id }}">Sil</button>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" class="text-center">Kayıtlı randevu yok.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Silme Onay Modali -->
+<div class="modal fade" id="deleteAppointmentModal" tabindex="-1" aria-labelledby="deleteAppointmentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteAppointmentModalLabel">Randevuyu Sil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+      </div>
+      <div class="modal-body">
+        Bu randevuyu silmek istediğinize emin misiniz?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteAppointmentBtn">Sil</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block script %}
-<!-- FullCalendar CSS ve JS -->
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.js"></script>
 <script>
 $(document).ready(function(){
     // Doktor uygunluk kontrolü
@@ -73,10 +131,11 @@ $(document).ready(function(){
         var doctor = $('#id_doctor').val();
         var date = $('#id_date').val();
         var time = $('#id_time').val();
+        var appointmentId = $('#id_appointment_id').val(); // mevcut randevu id'si
         if(doctor && date && time) {
             $.ajax({
                 url: '{% url "doctor_availability_check" 0 %}'.replace('0', doctor),
-                data: {date: date, time: time},
+                data: {date: date, time: time, appointment_id: appointmentId},
                 success: function(data) {
                     if(data.available) {
                         $('#doctor-availability-msg').removeClass('text-danger').addClass('text-success').text('Doktor uygun.');
@@ -90,8 +149,32 @@ $(document).ready(function(){
         }
     });
 
+    // Düzenle butonuna tıklanınca formu doldur
+    $(document).on('click', '.edit-appointment-btn', function(){
+        var appointmentId = $(this).data('id');
+        var patientId = $(this).data('patient');
+        var doctorId = $(this).data('doctor');
+        var date = $(this).data('date');
+        var time = $(this).data('time');
+        // Formu doldur
+        $('#id_appointment_id').val(appointmentId);
+        $('#id_patient').val(String(patientId));
+        $('#id_doctor').val(String(doctorId));
+        $('#id_date').val(date);
+        $('#id_time').val(time);
+        $('#appointmentModalLabel').text('Randevu Düzenle');
+        $('#appointmentModal').modal('show');
+    });
+    // Yeni randevu ekle butonuna tıklanınca formu sıfırla
+    $(document).on('click', '[data-bs-target="#appointmentModal"]', function(){
+        $('#appointment-form')[0].reset();
+        $('#id_appointment_id').val('');
+        $('#appointmentModalLabel').text('Yeni Randevu Ekle');
+        $('#doctor-availability-msg').text('');
+    });
+
     // Form submit işlemi (AJAX)
-    $('#appointment-form').on('submit', function(e){
+    $(document).on('submit', '#appointment-form', function(e){
         e.preventDefault();
         var formData = $(this).serialize();
         var $form = $(this);
@@ -102,13 +185,12 @@ $(document).ready(function(){
             success: function(response){
                 if(response.success){
                     $('#appointmentModal').modal('hide');
-                    // Takvimi güncelle
-                    if(window.calendar) window.calendar.refetchEvents();
+                    location.reload();
+                } else if(response.error) {
+                    alert(response.error);
                 } else if(response.html) {
-                    // Hatalıysa formu tekrar göster
                     $('.modal-body').html(response.html);
                 } else {
-                    // Genel hata
                     alert('Bir hata oluştu.');
                 }
             },
@@ -118,31 +200,31 @@ $(document).ready(function(){
         });
     });
 
-    // FullCalendar başlat
-    var calendarEl = document.getElementById('calendar');
-    if(calendarEl) {
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'tr',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            events: {
-                url: '{% url "appointment_list_json" %}',
-                failure: function() {
-                    alert('Randevular yüklenemedi!');
+    var deleteAppointmentId = null;
+    $(document).on('click', '.delete-appointment-btn', function(){
+        deleteAppointmentId = $(this).data('id');
+        $('#deleteAppointmentModal').modal('show');
+    });
+    $('#confirmDeleteAppointmentBtn').on('click', function(){
+        if(deleteAppointmentId) {
+            $.ajax({
+                url: '/randevu/sil/' + deleteAppointmentId + '/',
+                method: 'POST',
+                data: {csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()},
+                success: function(response) {
+                    if(response.success) {
+                        $('#deleteAppointmentModal').modal('hide');
+                        location.reload();
+                    } else {
+                        alert(response.error || 'Silme işlemi başarısız!');
+                    }
+                },
+                error: function() {
+                    alert('Sunucu hatası!');
                 }
-            },
-            eventClick: function(info) {
-                // Randevu detayını gösterebilirsin
-                alert('Randevu: ' + info.event.title);
-            }
-        });
-        calendar.render();
-        window.calendar = calendar;
-    }
+            });
+        }
+    });
 });
 </script>
 {% endblock %}

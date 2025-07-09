@@ -18,7 +18,7 @@ from django.urls import path, include
 from hastane.views.patient_registration_views import patient_registration_view, patient_list, patient_update
 from hastane.views.clinic_views import clinic_create, clinic_list, clinic_update, clinic_delete, clinic_detail, get_available_doctors, assign_doctors_modal, assign_doctors_to_clinic
 from hastane.views.doctor_views import doctor_create, doctor_list, doctor_update, doctor_delete
-from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json
+from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json, appointment_table_partial
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
 from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, patient_login_view, patient_register_view
@@ -50,7 +50,8 @@ urlpatterns = [
     path('randevu/doktor-saatler/<int:doctor_id>/', get_doctor_available_slots, name='get_doctor_available_slots'),
     path('randevu/sil/<int:appointment_id>/', delete_appointment, name='delete_appointment'),
     path('randevu/doktor/<int:doctor_id>/', doctor_appointments, name='doctor_appointments'),
-    path('randevular/json/', appointment_list_json, name='appointment_list_json'),
+    path('randevular/data/', appointment_list_json, name='appointment_list_json'),
+    path('randevu/tablo/', appointment_table_partial, name='appointment_table_partial'),
     path('receteler/', prescriptions_view, name='prescriptions'),
     path('odalar/', room_list, name='room_list'),
     path('oda/ekle/', add_room, name='add_room'),
