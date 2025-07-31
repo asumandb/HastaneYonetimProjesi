@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .doctor-dashboard {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem 0;
+    }
+    .dashboard-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .welcome-section {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    .welcome-section h1 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    .welcome-section p {
+        color: #7f8c8d;
+        font-size: 1.2rem;
+    }
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    .menu-item {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        color: white;
+        text-decoration: none;
+    }
+    .menu-item i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+    .menu-item h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    .menu-item p {
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+    .logout-btn {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+    .logout-btn:hover {
+        background: #c0392b;
+        color: white;
+        text-decoration: none;
+    }
+</style>
+
+<div class="doctor-dashboard">
+    <div class="container">
+        <a href="{% url 'doctor_logout' %}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+        </a>
+        
+        <div class="dashboard-card">
+            <div class="welcome-section">
+                <h1>Hoş Geldiniz, Dr. {{ doctor_name }}</h1>
+                <p>Hastane Yönetim Sistemi - Doktor Paneli</p>
+            </div>
+            
+            <div class="menu-grid">
+                <a href="{% url 'appointments' %}" class="menu-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Randevular</h3>
+                    <p>Hasta randevularını görüntüle ve yönet</p>
+                </a>
+                
+                <a href="{% url 'prescriptions' %}" class="menu-item">
+                    <i class="fas fa-prescription-bottle-medical"></i>
+                    <h3>Reçeteler</h3>
+                    <p>Hasta reçetelerini yaz ve görüntüle</p>
+                </a>
+                
+                <a href="{% url 'patient_list' %}" class="menu-item">
+                    <i class="fas fa-user-injured"></i>
+                    <h3>Hastalar</h3>
+                    <p>Hasta bilgilerini görüntüle ve yönet</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

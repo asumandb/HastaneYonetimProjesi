@@ -15,4 +15,4 @@ urlpatterns = [
     path('api/prescriptions/', api_prescriptions, name='api_prescriptions'),
     path('api/appointments/', api_appointments, name='api_appointments'),
     path('api/prescriptions/add/', api_add_prescription, name='api_add_prescription'),
-]
+

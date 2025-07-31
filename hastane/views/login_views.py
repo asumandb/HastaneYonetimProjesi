@@ -77,3 +77,4 @@ def doctor_logout_view(request):
     messages.success(request, 'Başarıyla çıkış yaptınız!')
     return redirect('login_select')
 
+
