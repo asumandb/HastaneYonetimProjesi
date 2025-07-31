@@ -19,4 +19,4 @@ class Command(BaseCommand):
                 doctor.save()
                 f.write(f"{doctor.name} {doctor.surname} ({doctor.email}): {raw_password}\n")
                 self.stdout.write(self.style.SUCCESS(f"{doctor.name} {doctor.surname} için şifre atandı."))
-        self.stdout.write(self.style.SUCCESS("Tüm şifreler doctor_passwords.txt dosyasına kaydedildi."))
+        self.stdout.write(self.style.SUCCESS("Tüm şifreler doctor_passwords.txt dosyasına kaydedildi."))
