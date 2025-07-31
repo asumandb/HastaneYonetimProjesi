@@ -2,97 +2,262 @@
 
 {% block content %}
 <style>
-    body, .login-container {
-        min-height: 100vh;
+    * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
         overflow: hidden;
     }
-    .doctor-blur-bg {
-        position: fixed;
-        top: 0; left: 0; width: 100vw; height: 100vh;
-        z-index: 0;
-        overflow: hidden;
-    }
-    .doctor-blur-bg span {
+
+    /* Animasyonlu arka plan */
+    .background-animation {
         position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.7;
-        background: #ffd49c;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
     }
-    .doctor-blur-bg .main { width: 900px; height: 900px; left: 30vw; top: 0vh; }
-    .doctor-blur-bg .side1 { width: 400px; height: 400px; left: 5vw; top: 60vh; opacity: 0.5; }
-    .doctor-blur-bg .side2 { width: 350px; height: 350px; left: 70vw; top: 60vh; opacity: 0.5; }
-    .doctor-login-card {
+
+    .background-animation::before,
+    .background-animation::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .background-animation::before {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .background-animation::after {
+        bottom: 10%;
+        right: 10%;
+        animation-delay: 3s;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .login-container {
         position: relative;
         z-index: 1;
-        width: 350px;
-        padding: 2.5rem 2.2rem 2rem 2.2rem;
-        border-radius: 32px;
-        background: rgba(255,255,255,0.92);
-        box-shadow: 0 8px 32px 0 rgba(255, 212, 156, 0.25);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .login-header {
+        margin-bottom: 2rem;
+    }
+
+    .login-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+        border-radius: 50%;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        border: 2.5px solid #ffd49c;
-        backdrop-filter: blur(2px);
+        justify-content: center;
+        margin: 0 auto 1rem;
+        box-shadow: 0 10px 20px rgba(255, 154, 86, 0.4);
     }
-    .doctor-login-card .icon {
-        font-size: 3.2rem;
-        color: #ffd49c;
-        margin-bottom: 1.2rem;
+
+    .login-icon i {
+        font-size: 2.5rem;
+        color: white;
     }
-    .doctor-login-card h2 {
-        font-size: 2rem;
+
+    .login-title {
+        font-size: 1.8rem;
         font-weight: 700;
-        color: #0c167f;
-        margin-bottom: 1.2rem;
+        color: #333;
+        margin-bottom: 0.5rem;
     }
-    .doctor-login-card label {
-        color: #0c167f;
-        font-weight: 500;
+
+    .login-subtitle {
+        color: #666;
+        font-size: 0.9rem;
     }
-    .doctor-login-card .form-control {
-        border-radius: 16px;
-        border: 1.5px solid #ffd49c;
-        margin-bottom: 1.1rem;
-        font-size: 1.1rem;
+
+    .form-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
     }
-    .doctor-login-card .btn-success {
-        background: #ffd49c;
-        color: #0c167f;
-        border: none;
-        border-radius: 24px;
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
         font-weight: 600;
-        font-size: 1.1rem;
-        padding: 0.7rem 0;
-        transition: background 0.2s, color 0.2s;
+        font-size: 0.9rem;
     }
-    .doctor-login-card .btn-success:hover {
-        background: #0c167f;
-        color: #fff;
+
+    .form-input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e1e5e9;
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        background: white;
+    }
+
+    .form-input::placeholder {
+        color: #999;
+    }
+
+    .login-button {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+
+    .login-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+    }
+
+    .login-button:active {
+        transform: translateY(0);
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 1.5rem;
+        color: #ff6b35;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+        color: #ff9a56;
+    }
+
+    .alert {
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        border: none;
+    }
+
+    .alert-danger {
+        background: rgba(220, 53, 69, 0.1);
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+    }
+
+    .alert-success {
+        background: rgba(40, 167, 69, 0.1);
+        color: #155724;
+        border-left: 4px solid #28a745;
+    }
+
+    .alert-info {
+        background: rgba(23, 162, 184, 0.1);
+        color: #0c5460;
+        border-left: 4px solid #17a2b8;
+    }
+
+    /* Responsive tasarım */
+    @media (max-width: 480px) {
+        .login-container {
+            margin: 1rem;
+            padding: 2rem;
+        }
+        
+        .login-title {
+            font-size: 1.5rem;
+        }
     }
 </style>
-<div class="doctor-blur-bg">
-    <span class="main"></span>
-    <span class="side1"></span>
-    <span class="side2"></span>
-</div>
-<div class="doctor-login-card">
-    <div class="icon"><i class="fa-solid fa-user-md"></i></div>
-    <h2>Doktor Girişi</h2>
+
+<div class="background-animation"></div>
+
+<div class="login-container">
+    <div class="login-header">
+        <div class="login-icon">
+            <i class="fas fa-user-md"></i>
+        </div>
+        <h1 class="login-title">Doktor Girişi</h1>
+        <p class="login-subtitle">Hastane Yönetim Sistemi</p>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <i class="fas fa-{% if message.tags == 'error' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
-        <div class="mb-3 w-100">
-            <label for="username" class="form-label">Kullanıcı Adı</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+        <div class="form-group">
+            <label for="username" class="form-label">
+                <i class="fas fa-envelope"></i> Email Adresi
+            </label>
+            <input type="email" class="form-input" id="username" name="username" 
+                   placeholder="ornek@hastane.com" required>
         </div>
-        <div class="mb-3 w-100">
-            <label for="password" class="form-label">Şifre</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+        
+        <div class="form-group">
+            <label for="password" class="form-label">
+                <i class="fas fa-lock"></i> Şifre
+            </label>
+            <input type="password" class="form-input" id="password" name="password" 
+                   placeholder="Şifrenizi girin" required>
         </div>
-        <button type="submit" class="btn btn-success w-100">Giriş Yap</button>
+        
+        <button type="submit" class="login-button">
+            <i class="fas fa-sign-in-alt"></i> Giriş Yap
+        </button>
     </form>
+
+    <a href="{% url 'login_select' %}" class="back-link">
+        <i class="fas fa-arrow-left"></i> Geri Dön
+    </a>
 </div>
 {% endblock %}

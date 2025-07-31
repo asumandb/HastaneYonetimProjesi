@@ -21,7 +21,15 @@ from hastane.views.doctor_views import doctor_create, doctor_list, doctor_update
 from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json, appointment_table_partial
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
-from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, patient_login_view, patient_register_view
+from hastane.views.login_views import (
+    login_select_view, 
+    admin_login_view, 
+    doctor_login_view, 
+    patient_login_view, 
+    patient_register_view,
+    doctor_dashboard_view,
+    doctor_logout_view
+)
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -64,6 +72,8 @@ urlpatterns = [
     path('login/doctor/', doctor_login_view, name='doctor_login'),
     path('login/patient/', patient_login_view, name='patient_login'),
     path('register/', patient_register_view, name='patient_register'),
+    path('doctor/dashboard/', doctor_dashboard_view, name='doctor_dashboard'),
+    path('doctor/logout/', doctor_logout_view, name='doctor_logout'),
     path('', login_select_view, name='home'),
     path('', include('hastane.urls')),
 ]
