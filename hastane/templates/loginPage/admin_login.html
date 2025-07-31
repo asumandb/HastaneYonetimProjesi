@@ -73,6 +73,29 @@
         background: #0c167f;
         color: #fff;
     }
+    .admin-login-card form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .admin-login-card .mb-3 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .admin-login-card label {
+        margin-bottom: 6px;
+    }
+    .admin-login-card .form-control {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .admin-login-card .btn-primary {
+        width: 100%;
+        margin-top: 8px;
+    }
 </style>
 <div class="admin-blur-bg">
     <span class="main"></span>
@@ -85,11 +108,11 @@
     <form method="post">
         {% csrf_token %}
         <div class="mb-3 w-100">
-            <label for="username" class="form-label">Kullanıcı Adı</label>
+            <label for="username" class="form-label">Kullanıcı Adı:</label>
             <input type="text" class="form-control" id="username" name="username" required>
         </div>
         <div class="mb-3 w-100">
-            <label for="password" class="form-label">Şifre</label>
+            <label for="password" class="form-label">Şifre:</label>
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>

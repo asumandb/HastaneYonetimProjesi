@@ -1,10 +1,8 @@
-from django.db import models
-from django.utils.translation import gettext_lazy as _
-from .clinic_model import Clinic
 import string
 import random
 from django.core.management.base import BaseCommand
 from django.contrib.auth.hashers import make_password
+from hastane.models.doctors_model import Doctors
 
 def generate_password(length=8):
     chars = string.ascii_letters + string.digits
@@ -22,23 +20,3 @@ class Command(BaseCommand):
                 f.write(f"{doctor.name} {doctor.surname} ({doctor.email}): {raw_password}\n")
                 self.stdout.write(self.style.SUCCESS(f"{doctor.name} {doctor.surname} için şifre atandı."))
         self.stdout.write(self.style.SUCCESS("Tüm şifreler doctor_passwords.txt dosyasına kaydedildi."))
-
-class Doctors(models.Model):
-    name = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    phone = models.CharField(max_length=100)
-    clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='doctors_images/')
-    password = models.CharField(max_length=128, blank=True, null=True)
-
-    class Meta:
-        verbose_name = _("Doktor")
-        verbose_name_plural = _("Doktorlar")
-
-    def __str__(self):
-        return f"{self.name} {self.surname}, {self.speciality}"
-        return self.email
-        return self.phone
-        return self.clinic
-        return self.id

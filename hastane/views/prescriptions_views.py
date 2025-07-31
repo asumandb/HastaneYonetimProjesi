@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
+from django.utils import timezone
 from ..models.prescriptions_model import Prescriptions
 from ..models.appointments_model import Appointment
 from ..models.patients_model import Patients
@@ -14,7 +15,6 @@ def prescriptions_view(request):
 
 @require_http_methods(["GET"])
 def api_appointments(request):
-    # Hasta, doktor, poliklinik bilgileriyle birlikte randevuları döndür
     appointments = Appointment.objects.select_related('patient', 'doctor', 'doctor__clinic').all()
     data = []
     for a in appointments:
@@ -53,6 +53,8 @@ def api_add_prescription(request):
     medicine = data.get('medicine')
     if not appointment_id or not medicine:
         return JsonResponse({'error': 'Eksik bilgi.'}, status=400)
+    if Prescriptions.objects.filter(appointment_id=appointment_id).exists():
+        return JsonResponse({'error': 'Bu randevuya zaten reçete yazılmış.'}, status=400)
     try:
         appointment = Appointment.objects.get(id=appointment_id)
         prescription = Prescriptions.objects.create(appointment=appointment, medicine=medicine)
