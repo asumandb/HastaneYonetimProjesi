@@ -9,6 +9,7 @@ class Doctors(models.Model):
     phone = models.CharField(max_length=100)
     clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='doctors_images/')
+    password = models.CharField(max_length=128, blank=True, null=True)  # Added password field
 
     class Meta:
         verbose_name = _("Doktor")
