@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from ..models.rooms_model import Rooms
 from django.views.decorators.http import require_GET, require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError
 
 def room_list(request):
     # Tüm odaları listele
@@ -17,8 +18,11 @@ def add_room(request):
     description = request.POST.get('description')
     number = request.POST.get('number')
     if number and room_type and status:
-        room = Rooms.objects.create(number=number, room_type=room_type, status=status, description=description)
-        return JsonResponse({'success': True, 'room': {'id': room.id, 'number': room.number, 'room_type': room.room_type, 'status': room.status, 'description': room.description}})
+        try:
+            room = Rooms.objects.create(number=number, room_type=room_type, status=status, description=description)
+            return JsonResponse({'success': True, 'room': {'id': room.id, 'number': room.number, 'room_type': room.room_type, 'status': room.status, 'description': room.description}})
+        except IntegrityError:
+            return JsonResponse({'success': False, 'error': 'Bu oda numarası zaten kayıtlı!'})
     else:
         return JsonResponse({'success': False, 'error': 'Tüm alanlar zorunludur.'})
 
@@ -31,6 +35,9 @@ def update_room(request, room_id):
     status = request.POST.get('status')
     description = request.POST.get('description')
     if number and room_type and status:
+        # Başka bir odada aynı numara var mı kontrol et
+        if Rooms.objects.exclude(id=room_id).filter(number=number).exists():
+            return JsonResponse({'success': False, 'error': 'Bu oda numarası zaten kayıtlı!'})
         room.number = number
         room.room_type = room_type
         room.status = status
