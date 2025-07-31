@@ -1,0 +1,416 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDORA - Randevu Al</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --color1: #ffb9c9;
+            --color2: #ffd49c;
+            --color3: #0c167f;
+            --color4: #0578dd;
+            --color5: #08f5ff;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--color1) 0%, var(--color2) 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--color3) !important;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .appointment-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(12, 22, 127, 0.1);
+            margin-top: 100px;
+            margin-bottom: 50px;
+        }
+        
+        .appointment-header {
+            background: linear-gradient(135deg, var(--color3) 0%, var(--color4) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+        
+        .appointment-form {
+            padding: 40px;
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--color4) 0%, var(--color5) 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(5, 120, 221, 0.3);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-primary" href="{% url 'index' %}">
+                <img src="{% static 'logo.jpg' %}" alt="MEDORA Logo" height="40" class="me-2">
+                MEDORA
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login_select' %}">Giriş Yap</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="appointment-container">
+            <!-- Header -->
+            <div class="appointment-header">
+                <h1 class="display-5 fw-bold mb-3">
+                    <i class="fas fa-calendar-check me-3"></i>
+                    Randevu Al
+                </h1>
+                <p class="lead mb-0">Sağlığınız için uzman doktorlarımızdan randevu alın</p>
+            </div>
+
+            <!-- Combined Form -->
+            <form method="POST">
+                {% csrf_token %}
+                
+                <!-- Patient Information Section -->
+                <div class="appointment-form">
+                    <h3 class="mb-4 text-center">
+                        <i class="fas fa-user me-2"></i>
+                        Hasta Bilgileri
+                    </h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Ad</label>
+                            <input type="text" class="form-control form-control-lg" name="patient_name" placeholder="Adınızı giriniz" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Soyad</label>
+                            <input type="text" class="form-control form-control-lg" name="patient_surname" placeholder="Soyadınızı giriniz" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">E-posta</label>
+                            <input type="email" class="form-control form-control-lg" name="patient_email" placeholder="ornek@email.com" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Telefon</label>
+                            <input type="tel" class="form-control form-control-lg" name="patient_phone" placeholder="0555 123 45 67" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">TC Kimlik No</label>
+                            <input type="text" class="form-control form-control-lg" name="patient_tc" placeholder="12345678901" maxlength="11" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Doğum Tarihi</label>
+                            <input type="date" class="form-control form-control-lg" name="patient_birth" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointment Information Section -->
+                <div class="appointment-form">
+                    <h3 class="mb-4 text-center">
+                        <i class="fas fa-calendar-check me-2"></i>
+                        Randevu Bilgileri
+                    </h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label fw-bold">Poliklinik Seçin</label>
+                                                         <select class="form-select form-select-lg" name="clinic" id="clinicSelect" required>
+                                 <option value="">Poliklinik seçin...</option>
+                                 {% for clinic in clinics %}
+                                     <option value="{{ clinic.id }}">{{ clinic.name }}</option>
+                                 {% empty %}
+                                     <option value="" disabled>Poliklinik bulunamadı</option>
+                                 {% endfor %}
+                             </select>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label fw-bold">Doktor Seçin</label>
+                            <select class="form-select form-select-lg" name="doctor" id="doctorSelect" required disabled>
+                                <option value="">Önce poliklinik seçin...</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label fw-bold">Randevu Tarihi</label>
+                            <input type="date" class="form-control form-control-lg" name="date" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label fw-bold">Randevu Saati</label>
+                            <select class="form-select form-select-lg" name="time" required>
+                                <option value="">Saat seçin...</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary-custom btn-lg">
+                            <i class="fas fa-check me-2"></i>
+                            Randevu Al
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Django Messages Container (Gizli) -->
+    <div id="django-messages" style="display: none;">
+        {% if messages %}
+            {% for message in messages %}
+                <div data-type="{{ message.tags }}" data-text="{{ message|escapejs }}"></div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <script>
+        // Django Messages - Sayfa yüklendiğinde çalışır
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageContainer = document.getElementById('django-messages');
+            const messageDivs = messageContainer.querySelectorAll('div');
+            
+            messageDivs.forEach(function(div) {
+                const type = div.getAttribute('data-type');
+                const text = div.getAttribute('data-text');
+                
+                let icon = 'ℹ️';
+                if (type === 'success') icon = '✅';
+                else if (type === 'error') icon = '❌';
+                else if (type === 'warning') icon = '⚠️';
+                
+                alert(icon + ' ' + text);
+            });
+        });
+        
+        // Doktor müsaitlik kontrolü
+        function checkDoctorAvailability(doctorId, date, time) {
+            if (!doctorId || !date || !time) return;
+            
+            fetch(`/api/doctors/${doctorId}/availability/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({
+                    date: date,
+                    time: time
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.available) {
+                    alert(`❌ Seçtiğiniz saatte (${time}) doktor müsait değil. Lütfen başka bir saat seçin.`);
+                    document.querySelector('select[name="time"]').value = '';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking availability:', error);
+            });
+        }
+        // Poliklinik seçildiğinde doktorları yükle
+        document.getElementById('clinicSelect').addEventListener('change', function() {
+            const clinicId = this.value;
+            const doctorSelect = document.getElementById('doctorSelect');
+            
+            // Doktor dropdown'ını sıfırla
+            doctorSelect.innerHTML = '<option value="">Doktor seçin...</option>';
+            doctorSelect.disabled = true;
+            
+            if (clinicId) {
+                // AJAX ile doktorları getir
+                fetch(`/api/clinics/${clinicId}/doctors/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.doctors && data.doctors.length > 0) {
+                            data.doctors.forEach(doctor => {
+                                const option = document.createElement('option');
+                                option.value = doctor.id;
+                                option.textContent = `Dr. ${doctor.name} ${doctor.surname}`;
+                                doctorSelect.appendChild(option);
+                            });
+                            doctorSelect.disabled = false;
+                        } else {
+                            doctorSelect.innerHTML = '<option value="">Bu poliklinikte doktor bulunamadı</option>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading doctors:', error);
+                        doctorSelect.innerHTML = '<option value="">Doktorlar yüklenirken hata oluştu</option>';
+                    });
+            }
+        });
+        
+        // Form gönderimini kontrol et ve telefon numarasını temizle
+        document.querySelector('form').addEventListener('submit', function(e) {
+            // Hasta bilgileri kontrolü
+            const patientName = document.querySelector('input[name="patient_name"]').value.trim();
+            const patientSurname = document.querySelector('input[name="patient_surname"]').value.trim();
+            const patientEmail = document.querySelector('input[name="patient_email"]').value.trim();
+            const patientPhone = document.querySelector('input[name="patient_phone"]').value.trim();
+            const patientTc = document.querySelector('input[name="patient_tc"]').value.trim();
+            const patientBirth = document.querySelector('input[name="patient_birth"]').value;
+            
+            // Randevu bilgileri kontrolü
+            const clinic = document.getElementById('clinicSelect').value;
+            const doctor = document.getElementById('doctorSelect').value;
+            const date = document.querySelector('input[name="date"]').value;
+            const time = document.querySelector('select[name="time"]').value;
+            
+            // Tüm alanları kontrol et
+            if (!patientName || !patientSurname || !patientEmail || !patientPhone || !patientTc || !patientBirth || !clinic || !doctor || !date || !time) {
+                e.preventDefault();
+                alert('Lütfen tüm alanları doldurun.');
+                return false;
+            }
+            
+            // Telefon numarasındaki boşlukları temizle
+            const phoneInput = document.querySelector('input[name="patient_phone"]');
+            const phoneOriginalValue = phoneInput.value;
+            phoneInput.value = phoneOriginalValue.replace(/\s/g, ''); // Boşlukları kaldır
+            
+            // Form gönderildikten sonra formatı geri yükle
+            setTimeout(() => {
+                phoneInput.value = phoneOriginalValue;
+            }, 100);
+        });
+        
+        // Tarih input'unu bugünden önceki tarihleri seçmeyecek şekilde ayarla
+        const dateInput = document.querySelector('input[name="date"]');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+        
+        // Pazar günlerini devre dışı bırak
+        dateInput.addEventListener('change', function() {
+            const selectedDate = new Date(this.value);
+            if (selectedDate.getDay() === 0) { // 0 = Pazar
+                alert('Pazar günleri randevu alınamaz. Lütfen başka bir tarih seçin.');
+                this.value = '';
+            }
+        });
+        
+        // Doktor seçildiğinde müsaitlik kontrolü
+        document.getElementById('doctorSelect').addEventListener('change', function() {
+            const doctorId = this.value;
+            const date = document.querySelector('input[name="date"]').value;
+            const time = document.querySelector('select[name="time"]').value;
+            
+            if (doctorId && date && time) {
+                checkDoctorAvailability(doctorId, date, time);
+            }
+        });
+        
+        // Saat seçildiğinde müsaitlik kontrolü
+        document.querySelector('select[name="time"]').addEventListener('change', function() {
+            const doctorId = document.getElementById('doctorSelect').value;
+            const date = document.querySelector('input[name="date"]').value;
+            const time = this.value;
+            
+            if (doctorId && date && time) {
+                checkDoctorAvailability(doctorId, date, time);
+            }
+        });
+        
+        // Tarih değiştiğinde saat seçimini sıfırla
+        dateInput.addEventListener('change', function() {
+            document.querySelector('select[name="time"]').value = '';
+        });
+        
+        // Telefon numarası formatlaması
+        const phoneInput = document.querySelector('input[name="patient_phone"]');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Sadece rakamları al
+            
+            if (value.length > 0) {
+                // Türkiye telefon formatı: 0555 123 45 67
+                if (value.length <= 4) {
+                    value = value;
+                } else if (value.length <= 7) {
+                    value = value.slice(0, 4) + ' ' + value.slice(4);
+                } else if (value.length <= 9) {
+                    value = value.slice(0, 4) + ' ' + value.slice(4, 7) + ' ' + value.slice(7);
+                } else {
+                    value = value.slice(0, 4) + ' ' + value.slice(4, 7) + ' ' + value.slice(7, 9) + ' ' + value.slice(9, 11);
+                }
+            }
+            
+            e.target.value = value;
+        });
+        
+        // TC Kimlik numarası - sadece rakam ve 11 hane sınırı
+        const tcInput = document.querySelector('input[name="patient_tc"]');
+        tcInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Sadece rakamları al
+            
+            // 11 haneden fazla girilmesini engelle
+            if (value.length > 11) {
+                value = value.slice(0, 11);
+            }
+            
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>

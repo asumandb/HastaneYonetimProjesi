@@ -204,3 +204,442 @@ Traceback (most recent call last):
     raise new from exc
 django.template.exceptions.TemplateDoesNotExist: base_login.html
 ERROR 2025-07-31 15:48:00,285 basehttp "GET / HTTP/1.1" 500 126730
+ERROR 2025-07-31 18:47:15,830 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 148: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:15,834 basehttp "GET / HTTP/1.1" 500 138593
+ERROR 2025-07-31 18:47:34,559 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:34,559 basehttp "GET / HTTP/1.1" 500 138715
+ERROR 2025-07-31 18:47:35,143 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:35,143 basehttp "GET / HTTP/1.1" 500 138715
+ERROR 2025-07-31 18:47:35,305 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:35,305 basehttp "GET / HTTP/1.1" 500 138715
+ERROR 2025-07-31 18:47:35,879 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:35,879 basehttp "GET / HTTP/1.1" 500 138715
+ERROR 2025-07-31 18:47:39,853 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:39,859 basehttp "GET / HTTP/1.1" 500 138708
+ERROR 2025-07-31 18:47:40,509 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:40,509 basehttp "GET / HTTP/1.1" 500 138708
+ERROR 2025-07-31 18:47:40,692 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:40,692 basehttp "GET / HTTP/1.1" 500 138708
+ERROR 2025-07-31 18:47:40,958 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:40,960 basehttp "GET / HTTP/1.1" 500 138708
+ERROR 2025-07-31 18:47:41,251 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:41,251 basehttp "GET / HTTP/1.1" 500 138708
+ERROR 2025-07-31 18:47:41,425 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\index_views.py", line 12, in index_view
+    return render(request, 'index.html', context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 155: 'static'. Did you forget to register or load this tag?
+ERROR 2025-07-31 18:47:41,425 basehttp "GET / HTTP/1.1" 500 138708
+ERROR 2025-07-31 20:03:12,963 log Internal Server Error: /login/doctor/
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\login_views.py", line 39, in doctor_login_view
+    password_check_result = check_password(password, doctor.password)
+AttributeError: 'Doctors' object has no attribute 'password'
+ERROR 2025-07-31 20:03:12,963 basehttp "POST /login/doctor/ HTTP/1.1" 500 70970
