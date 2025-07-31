@@ -122,3 +122,85 @@ Traceback (most recent call last):
                   ^^^^^^^^^^^^^^^^^
 AttributeError: 'Doctors' object has no attribute 'speciality'
 ERROR 2025-07-09 13:45:32,512 basehttp "GET /randevu/doktor-uygunluk/7/?date=2025-07-31&time=11%3A00&appointment_id=9 HTTP/1.1" 500 69319
+ERROR 2025-07-31 15:40:23,970 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader_tags.py", line 127, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader_tags.py", line 124, in get_parent
+    return self.find_template(parent, context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader_tags.py", line 103, in find_template
+    template, origin = context.template.engine.find_template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 129, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base_login.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\login_views.py", line 6, in login_select_view
+    return render(request, 'loginpage/login_select.html')
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base_login.html
+ERROR 2025-07-31 15:40:23,970 basehttp "GET / HTTP/1.1" 500 126730
+ERROR 2025-07-31 15:48:00,278 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader_tags.py", line 127, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader_tags.py", line 124, in get_parent
+    return self.find_template(parent, context)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader_tags.py", line 103, in find_template
+    template, origin = context.template.engine.find_template(
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\engine.py", line 129, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base_login.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\hastane\views\login_views.py", line 6, in login_select_view
+    return render(request, 'loginpage/login_select.html')
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "C:\Users\asuma\OneDrive\Masaüstü\HastaneYonetimProjesi\venv310\lib\site-packages\django\template\backends\django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base_login.html
+ERROR 2025-07-31 15:48:00,285 basehttp "GET / HTTP/1.1" 500 126730
