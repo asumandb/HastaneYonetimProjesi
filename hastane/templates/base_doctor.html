@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}Doktor Paneli{% endblock %}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+	<style>
+		body { background: #f7f9fc; }
+		.sidebar { width: 240px; background: #4f46e5; color: #fff; min-height: 100vh; }
+		.sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 18px; border-radius: 10px; margin: 6px 10px; }
+		.sidebar a:hover, .sidebar a.active { background: rgba(255,255,255,0.15); }
+		.header { background: #fff; border-bottom: 1px solid #e5e7eb; }
+	</style>
+</head>
+<body>
+	<div class="d-flex">
+		<aside class="sidebar p-3">
+			<div class="text-center mb-3">
+				<img src="{% static 'logo.jpg' %}" alt="Hastane Logosu" class="img-fluid rounded-circle" style="width:96px;height:96px;object-fit:cover;box-shadow:0 6px 16px rgba(0,0,0,0.15);">
+			</div>
+			<h5 class="mb-4 text-center"><i class="fa-solid fa-user-md me-2"></i>Doktor Paneli</h5>
+			<nav>
+				{% url 'doctor_dashboard' as dash_url %}
+				{% url 'doctor_my_appointments' as my_app_url %}
+				{% url 'doctor_my_patients' as my_pat_url %}
+				{% url 'doctor_my_prescriptions' as my_presc_url %}
+				{% url 'doctor_prescription_create' as new_presc_url %}
+
+				<a href="{{ dash_url }}" class="{% if request.path == dash_url %}active{% endif %}"><i class="fa-solid fa-gauge me-2"></i>Ana Sayfa</a>
+				<a href="{{ my_app_url }}" class="{% if request.path == my_app_url %}active{% endif %}"><i class="fa-solid fa-calendar-check me-2"></i>Randevularım</a>
+				<a href="{{ my_pat_url }}" class="{% if request.path == my_pat_url %}active{% endif %}"><i class="fa-solid fa-user-injured me-2"></i>Hastalarım</a>
+				<a href="{{ my_presc_url }}" class="{% if request.path == my_presc_url %}active{% endif %}"><i class="fa-solid fa-prescription-bottle-medical me-2"></i>Reçetelerim</a>
+				<a href="{{ new_presc_url }}" class="{% if request.path == new_presc_url %}active{% endif %}"><i class="fa-solid fa-file-medical me-2"></i>Reçete Yaz</a>
+				<hr>
+				<a href="{% url 'doctor_logout' %}"><i class="fa-solid fa-right-from-bracket me-2"></i>Çıkış</a>
+			</nav>
+		</aside>
+		<main class="flex-grow-1">
+			<header class="header p-3 d-flex justify-content-between align-items-center">
+				<div>
+					<strong>Hoş geldiniz,</strong> Dr. {{ doctor_name }}
+				</div>
+			</header>
+			<section class="p-4">
+				{% block content %}{% endblock %}
+			</section>
+		</main>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

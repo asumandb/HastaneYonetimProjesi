@@ -22,10 +22,19 @@ from hastane.views.appointment_views import appointment_calendar, day_appointmen
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
 
-from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view
+from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, doctor_logout_view
 from hastane.views.index_views import index_view
 from hastane.views.take_appointment_views import take_appointments_view
 from hastane.views.take_appointment_views import get_doctors_by_clinic, check_doctor_availability
+from hastane.views.doctor_dashboard_view import doctor_dashboard_view
+from hastane.views.doctor_portal_views import (
+    doctor_my_appointments_view,
+    doctor_my_patients_view,
+    doctor_my_prescriptions_view,
+    doctor_prescription_create_view,
+    doctor_prescription_edit_view,
+)
+from hastane.views.doctor_login_view import doctor_login_view
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -35,6 +44,7 @@ urlpatterns = [
     path('hasta-kayit/', patient_registration_view, name='patient_registration'),
     path('patients/', patient_list, name='patient_list'),
     path('patients/<int:patient_id>/update/', patient_update, name='patient_update'),
+    
 
     path('poliklinikler/', clinic_list, name='polyclinics'),
     path('poliklinik/olustur/', clinic_create, name='clinic_create'),
@@ -49,6 +59,14 @@ urlpatterns = [
     path('doktor/guncelle/<int:doctor_id>/', doctor_update, name='doctor_update'),
     path('doktor/sil/<int:doctor_id>/', doctor_delete, name='doctor_delete'),
     path('doktorlar/', doctor_list, name='doctor_list'),
+    path('dashboard/doctor/', doctor_dashboard_view, name='doctor_dashboard'),
+    path('login/doctor/', doctor_login_view, name='doctor_login'),
+    path('logout/doctor/', doctor_logout_view, name='doctor_logout'),
+    path('dashboard/doctor/appointments/', doctor_my_appointments_view, name='doctor_my_appointments'),
+    path('dashboard/doctor/patients/', doctor_my_patients_view, name='doctor_my_patients'),
+    path('dashboard/doctor/prescriptions/', doctor_my_prescriptions_view, name='doctor_my_prescriptions'),
+    path('dashboard/doctor/prescriptions/new/', doctor_prescription_create_view, name='doctor_prescription_create'),
+    path('dashboard/doctor/prescriptions/<int:prescription_id>/edit/', doctor_prescription_edit_view, name='doctor_prescription_edit'),
 
     path('randevular/', appointment_calendar, name='appointments'),
     path('randevu/ekle/', appointment_create, name='appointment_create'),

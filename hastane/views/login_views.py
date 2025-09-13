@@ -7,7 +7,7 @@ from hastane.models.doctors_model import Doctors
 from django.contrib.auth.hashers import check_password
 
 def login_select_view(request):
-    return render(request, 'loginpage/login_select.html')
+    return render(request, 'loginPage/login_select.html')
 
 def admin_login_view(request):
     if request.method == 'POST':
@@ -24,7 +24,7 @@ def admin_login_view(request):
         else:
             messages.error(request, 'Geçersiz kullanıcı adı veya şifre!')
     
-    return render(request, 'loginpage/admin_login.html')
+    return render(request, 'loginPage/admin_login.html')
 
 def doctor_login_view(request):
     if request.method == 'POST':
@@ -49,7 +49,7 @@ def doctor_login_view(request):
         except Doctors.DoesNotExist:
             messages.error(request, 'Bu email ile kayıtlı doktor bulunamadı!')
     
-    return render(request, 'loginpage/doctor_login.html')
+    return render(request, 'loginPage/doctor_login.html')
 
 def doctor_dashboard_view(request):
     # Doktor girişi kontrolü

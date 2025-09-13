@@ -1,0 +1,29 @@
+{% extends 'base_doctor.html' %}
+
+{% block title %}Reçete Yaz{% endblock %}
+
+{% block content %}
+<h3 class="mb-3"><i class="fa-solid fa-file-medical me-2"></i>Reçete Yaz</h3>
+
+<form method="post" class="card p-3">
+	{% csrf_token %}
+	<div class="mb-3">
+		<label class="form-label">Randevu</label>
+		<select name="appointment_id" class="form-select" required>
+			<option value="">Seçiniz</option>
+			{% for a in appointments %}
+				<option value="{{ a.id }}">{{ a.date }} {{ a.time }} - {{ a.patient.name }} {{ a.patient.surname }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">İlaçlar</label>
+		<textarea name="medicine" class="form-control" rows="6" placeholder="İlaç isimleri ve kullanım talimatları" required></textarea>
+	</div>
+	<div>
+		<button class="btn btn-primary" type="submit">Kaydet</button>
+		<a href="{% url 'doctor_my_prescriptions' %}" class="btn btn-secondary">İptal</a>
+	</div>
+</form>
+{% endblock %}
+
