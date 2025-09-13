@@ -1,0 +1,34 @@
+{% extends 'base_doctor.html' %}
+
+{% block title %}Reçetelerim{% endblock %}
+
+{% block content %}
+<h3 class="mb-3"><i class="fa-solid fa-prescription-bottle-medical me-2"></i>Reçetelerim</h3>
+<div class="table-responsive">
+	<table class="table table-striped align-middle">
+		<thead>
+			<tr>
+				<th>Tarih</th>
+				<th>Hasta</th>
+				<th>İlaçlar</th>
+				<th style="width: 120px;">İşlem</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for r in prescriptions %}
+			<tr>
+				<td>{{ r.appointment.date }} {{ r.appointment.time }}</td>
+				<td>{{ r.appointment.patient.name }} {{ r.appointment.patient.surname }}</td>
+				<td><pre class="mb-0" style="white-space: pre-wrap;">{{ r.medicine }}</pre></td>
+				<td>
+					<a href="{% url 'doctor_prescription_edit' r.id %}" class="btn btn-sm btn-outline-primary">Düzenle</a>
+				</td>
+			</tr>
+			{% empty %}
+			<tr><td colspan="4" class="text-muted">Kayıt bulunamadı.</td></tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}
+

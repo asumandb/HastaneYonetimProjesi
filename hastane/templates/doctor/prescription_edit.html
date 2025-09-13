@@ -1,0 +1,28 @@
+{% extends 'base_doctor.html' %}
+
+{% block title %}Reçete Düzenle{% endblock %}
+
+{% block content %}
+<h3 class="mb-3"><i class="fa-solid fa-pen-to-square me-2"></i>Reçete Düzenle</h3>
+
+<div class="card">
+	<div class="card-body">
+		<div class="mb-3">
+			<strong>Hasta:</strong> {{ prescription.appointment.patient.name }} {{ prescription.appointment.patient.surname }}<br>
+			<strong>Tarih/Saat:</strong> {{ prescription.appointment.date }} {{ prescription.appointment.time }}
+		</div>
+		<form method="post">
+			{% csrf_token %}
+			<div class="mb-3">
+				<label class="form-label">İlaçlar</label>
+				<textarea name="medicine" rows="8" class="form-control" required>{{ prescription.medicine }}</textarea>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-primary">Kaydet</button>
+				<a href="{% url 'doctor_my_prescriptions' %}" class="btn btn-secondary">İptal</a>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
+

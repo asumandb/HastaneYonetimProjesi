@@ -1,21 +1,22 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base_doctor.html' %}
 
 {% block content %}
 <style>
     .doctor-dashboard {
-        min-height: 100vh;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem 0;
+        min-height: 60vh;
+        background: transparent;
+        display: flex;
+        align-items: center;
     }
     .dashboard-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         padding: 2rem;
-        margin-bottom: 2rem;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin: 0 auto;
+        max-width: 980px;
+        width: 100%;
+        border: 1px solid #eef2f7;
     }
     .welcome-section {
         text-align: center;
@@ -38,25 +39,27 @@
         margin-top: 2rem;
     }
     .menu-item {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 2rem;
-        border-radius: 15px;
+        background: #f8fafc;
+        color: #1f2937;
+        padding: 1.5rem;
+        border-radius: 12px;
         text-align: center;
         text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s ease;
+        border: 1px solid #e5e7eb;
     }
     .menu-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        color: #111827;
         text-decoration: none;
+        background: #ffffff;
     }
     .menu-item i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
         display: block;
+        color: #4f46e5;
     }
     .menu-item h3 {
         font-size: 1.5rem;
@@ -88,33 +91,31 @@
 
 <div class="doctor-dashboard">
     <div class="container">
-        <a href="{% url 'doctor_logout' %}" class="logout-btn">
-            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
-        </a>
-        
         <div class="dashboard-card">
             <div class="welcome-section">
                 <h1>Hoş Geldiniz, Dr. {{ doctor_name }}</h1>
-                <p>Hastane Yönetim Sistemi - Doktor Paneli</p>
+                <p>Doktor panelinden kendi randevularınızı, hastalarınızı ve reçetelerinizi yönetebilirsiniz.</p>
             </div>
-            
             <div class="menu-grid">
-                <a href="{% url 'appointments' %}" class="menu-item">
+                <a href="{% url 'doctor_my_appointments' %}" class="menu-item">
                     <i class="fas fa-calendar-check"></i>
-                    <h3>Randevular</h3>
-                    <p>Hasta randevularını görüntüle ve yönet</p>
+                    <h3>Randevularım</h3>
+                    <p>Bugünkü ve yaklaşan randevular</p>
                 </a>
-                
-                <a href="{% url 'prescriptions' %}" class="menu-item">
-                    <i class="fas fa-prescription-bottle-medical"></i>
-                    <h3>Reçeteler</h3>
-                    <p>Hasta reçetelerini yaz ve görüntüle</p>
-                </a>
-                
-                <a href="{% url 'patient_list' %}" class="menu-item">
+                <a href="{% url 'doctor_my_patients' %}" class="menu-item">
                     <i class="fas fa-user-injured"></i>
-                    <h3>Hastalar</h3>
-                    <p>Hasta bilgilerini görüntüle ve yönet</p>
+                    <h3>Hastalarım</h3>
+                    <p>Size bağlı hastalar</p>
+                </a>
+                <a href="{% url 'doctor_my_prescriptions' %}" class="menu-item">
+                    <i class="fas fa-prescription-bottle-medical"></i>
+                    <h3>Reçetelerim</h3>
+                    <p>Yazdığınız tüm reçeteler</p>
+                </a>
+                <a href="{% url 'doctor_prescription_create' %}" class="menu-item">
+                    <i class="fas fa-file-medical"></i>
+                    <h3>Reçete Yaz</h3>
+                    <p>Yeni reçete oluştur</p>
                 </a>
             </div>
         </div>

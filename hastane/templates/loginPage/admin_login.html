@@ -2,98 +2,97 @@
 
 {% block content %}
 <style>
-    body, .login-container {
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #ffb9c9 0%, #0c167f 100%);
+        min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        position: relative; overflow: hidden;
     }
-    .admin-blur-bg {
-        position: fixed;
-        top: 0; left: 0; width: 100vw; height: 100vh;
-        z-index: 0;
-        overflow: hidden;
+    .background-animation {
+        position: absolute; inset: 0; z-index: 0;
     }
-    .admin-blur-bg span {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.7;
-        background: #ffb9c9;
+    .background-animation::before,
+    .background-animation::after {
+        content: '';
+        position: absolute; width: 320px; height: 320px; border-radius: 50%;
+        background: rgba(255,255,255,0.18);
+        animation: float 6s ease-in-out infinite;
     }
-    .admin-blur-bg .main { width: 900px; height: 900px; left: 30vw; top: 0vh; }
-    .admin-blur-bg .side1 { width: 400px; height: 400px; left: 5vw; top: 60vh; opacity: 0.5; }
-    .admin-blur-bg .side2 { width: 350px; height: 350px; left: 70vw; top: 60vh; opacity: 0.5; }
-    .admin-login-card {
-        position: relative;
-        z-index: 1;
-        width: 350px;
-        padding: 2.5rem 2.2rem 2rem 2.2rem;
-        border-radius: 32px;
-        background: rgba(255,255,255,0.92);
-        box-shadow: 0 8px 32px 0 rgba(255, 185, 201, 0.25);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 2.5px solid #ffb9c9;
-        backdrop-filter: blur(2px);
+    .background-animation::before { top: 12%; left: 8%; animation-delay: 0s; }
+    .background-animation::after  { bottom: 12%; right: 8%; animation-delay: 3s; }
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-18px) rotate(180deg)} }
+
+    .login-container {
+        position: relative; z-index: 1; background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(20px); border-radius: 20px; padding: 3rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.2);
+        width: 100%; max-width: 400px; text-align: center;
     }
-    .admin-login-card .icon {
-        font-size: 3.2rem;
-        color: #ffb9c9;
-        margin-bottom: 1.2rem;
+    .login-header { margin-bottom: 2rem; }
+    .login-icon { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem;
+        display: flex; align-items: center; justify-content: center;
+        background: linear-gradient(135deg, #ffb9c9 0%, #0c167f 100%);
+        box-shadow: 0 10px 20px rgba(12, 22, 127, 0.25);
     }
-    .admin-login-card h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #0c167f;
-        margin-bottom: 1.2rem;
-    }
-    .admin-login-card label {
-        color: #0c167f;
-        font-weight: 500;
-    }
-    .admin-login-card .form-control {
-        border-radius: 16px;
-        border: 1.5px solid #ffb9c9;
-        margin-bottom: 1.1rem;
-        font-size: 1.1rem;
-    }
-    .admin-login-card .btn-primary {
-        background: #ffb9c9;
-        color: #0c167f;
-        border: none;
-        border-radius: 24px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        padding: 0.7rem 0;
-        transition: background 0.2s, color 0.2s;
-    }
-    .admin-login-card .btn-primary:hover {
-        background: #0c167f;
-        color: #fff;
-    }
+    .login-icon i { font-size: 2.5rem; color: white; }
+    .login-title { font-size: 1.8rem; font-weight: 700; color: #0c167f; margin-bottom: 0.5rem; }
+    .login-subtitle { color: #365; opacity: .85; font-size: 0.9rem; }
+
+    .form-group { margin-bottom: 1.5rem; text-align: left; }
+    .form-label { display:block; margin-bottom:.5rem; color:#0c167f; font-weight:600; font-size:.9rem; }
+    .form-input { width:100%; padding:1rem; border:2px solid #ffb9c9; border-radius:12px; font-size:1rem; transition:.3s; background: rgba(255,255,255,0.8); }
+    .form-input:focus { outline:none; border-color:#0c167f; box-shadow:0 0 0 3px rgba(12,22,127,0.15); background:white; }
+    .form-input::placeholder { color:#999; }
+
+    .login-button { width:100%; padding:1rem; background: linear-gradient(135deg, #ffb9c9 0%, #0c167f 100%);
+        color:#fff; border:none; border-radius:12px; font-size:1rem; font-weight:600; cursor:pointer; transition:.3s; margin-top:1rem; }
+    .login-button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(12,22,127,0.25); }
+
+    .alert { padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; font-size: 0.9rem; border: none; }
+    .alert-danger { background: rgba(220,53,69,.1); color:#721c24; border-left:4px solid #dc3545; }
+    .alert-success { background: rgba(40,167,69,.1); color:#155724; border-left:4px solid #28a745; }
+    .alert-info { background: rgba(23,162,184,.1); color:#0c5460; border-left:4px solid #17a2b8; }
+
+    @media (max-width: 480px) { .login-container { margin:1rem; padding:2rem; } .login-title{font-size:1.5rem;} }
 </style>
-<div class="admin-blur-bg">
-    <span class="main"></span>
-    <span class="side1"></span>
-    <span class="side2"></span>
-</div>
-<div class="admin-login-card">
-    <div class="icon"><i class="fa-solid fa-user-shield"></i></div>
-    <h2>Admin Girişi</h2>
+
+<div class="background-animation"></div>
+
+<div class="login-container">
+    <div class="login-header">
+        <div class="login-icon">
+            <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h1 class="login-title">Admin Girişi</h1>
+        <p class="login-subtitle">Hastane Yönetim Sistemi</p>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <i class="fas fa-{% if message.tags == 'error' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
-        <div class="mb-3 w-100">
-            <label for="username" class="form-label">Kullanıcı Adı</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+        <div class="form-group">
+            <label for="username" class="form-label"><i class="fas fa-user"></i> Kullanıcı Adı</label>
+            <input type="text" class="form-input" id="username" name="username" placeholder="kullanici" required>
         </div>
-        <div class="mb-3 w-100">
-            <label for="password" class="form-label">Şifre</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+        <div class="form-group">
+            <label for="password" class="form-label"><i class="fas fa-lock"></i> Şifre</label>
+            <input type="password" class="form-input" id="password" name="password" placeholder="Şifrenizi girin" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+        <button type="submit" class="login-button"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
     </form>
+
+    <a href="{% url 'login_select' %}" class="back-link" style="display:inline-block;margin-top:1.5rem;color:#0c167f;text-decoration:none;font-weight:500;"> 
+        <i class="fas fa-arrow-left"></i> Geri Dön
+    </a>
 </div>
 
 {% endblock %}
