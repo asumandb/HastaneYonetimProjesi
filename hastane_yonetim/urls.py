@@ -15,16 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from hastane.views.patient_registration_views import patient_registration_view, patient_list, patient_update
+from hastane.views.patient_registration_views import patient_registration_view, patient_list, patient_update, patient_delete
 from hastane.views.clinic_views import clinic_create, clinic_list, clinic_update, clinic_delete, clinic_detail, get_available_doctors, assign_doctors_modal, assign_doctors_to_clinic
 from hastane.views.doctor_views import doctor_create, doctor_list, doctor_update, doctor_delete
 from hastane.views.appointment_views import appointment_calendar, day_appointments, check_doctor_availability, get_doctor_available_slots, delete_appointment, doctor_appointments, appointment_create, appointment_list_json, appointment_table_partial
 from hastane.views.prescriptions_views import prescriptions_view
 from hastane.views.rooms_views import room_list, add_room, update_room, delete_room, room_dropdown, room_description
-
-from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, doctor_logout_view
-from hastane.views.index_views import index_view
 from hastane.views.take_appointment_views import take_appointments_view
+from hastane.views.login_views import login_select_view, admin_login_view, doctor_login_view, doctor_logout_view, logout_view
+from hastane.views.index_views import index_view
 from hastane.views.take_appointment_views import get_doctors_by_clinic, check_doctor_availability
 from hastane.views.doctor_dashboard_view import doctor_dashboard_view
 from hastane.views.doctor_portal_views import (
@@ -44,6 +43,7 @@ urlpatterns = [
     path('hasta-kayit/', patient_registration_view, name='patient_registration'),
     path('patients/', patient_list, name='patient_list'),
     path('patients/<int:patient_id>/update/', patient_update, name='patient_update'),
+    path('patients/<int:patient_id>/delete/', patient_delete, name='patient_delete'),
     
 
     path('poliklinikler/', clinic_list, name='polyclinics'),
@@ -62,6 +62,7 @@ urlpatterns = [
     path('dashboard/doctor/', doctor_dashboard_view, name='doctor_dashboard'),
     path('login/doctor/', doctor_login_view, name='doctor_login'),
     path('logout/doctor/', doctor_logout_view, name='doctor_logout'),
+    path('logout/', logout_view, name='logout'),
     path('dashboard/doctor/appointments/', doctor_my_appointments_view, name='doctor_my_appointments'),
     path('dashboard/doctor/patients/', doctor_my_patients_view, name='doctor_my_patients'),
     path('dashboard/doctor/prescriptions/', doctor_my_prescriptions_view, name='doctor_my_prescriptions'),
@@ -86,14 +87,16 @@ urlpatterns = [
     path('oda/guncelle/<int:room_id>/', update_room, name='oda_guncelle'),
     path('oda/sil/<int:room_id>/', delete_room, name='oda_sil'),
     path('oda/dropdown/', room_dropdown, name='room_dropdown'),
-    path('oda/aciklama/<int:room_id>/', room_description, name='oda_aciklama'),
+    path('oda/aciklama/<int:room_id>/', room_description, name='room_aciklama'),
 
     path('login/', login_select_view, name='login_select'),
     path('login/admin/', admin_login_view, name='admin_login'),
     path('login/doctor/', doctor_login_view, name='doctor_login'),
 
+    
 
     path('randevu-al/', take_appointments_view, name='take_appointments'),
+
 
     path('api/clinics/<int:clinic_id>/doctors/', get_doctors_by_clinic, name='get_doctors_by_clinic'),
     path('api/doctors/<int:doctor_id>/availability/', check_doctor_availability, name='check_doctor_availability'),

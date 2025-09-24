@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+
 def patient_registration_view(request):
     patients = Patients.objects.all()
     return render(request, 'patient_registration.html') 
@@ -67,3 +68,16 @@ def patient_update(request, patient_id):
             return JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+@csrf_exempt
+def patient_delete(request, patient_id):
+    if request.method == 'POST':
+        try:
+            patient = Patients.objects.get(id=patient_id)
+            patient.delete()
+            return JsonResponse({'success': True})
+        except Patients.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Hasta bulunamadı.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    return JsonResponse({'success': False, 'error': 'Geçersiz istek yöntemi'}, status=405)

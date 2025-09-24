@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from hastane.models import Patients
 from hastane.models.doctors_model import Doctors
@@ -10,6 +10,15 @@ def login_select_view(request):
     return render(request, 'loginPage/login_select.html')
 
 def admin_login_view(request):
+    # GET isteğinde önceki sayfadan taşınmış mesajlar varsa temizle
+    if request.method == 'GET':
+        try:
+            storage = messages.get_messages(request)
+            for _ in storage:
+                pass
+        except Exception:
+            pass
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -27,6 +36,15 @@ def admin_login_view(request):
     return render(request, 'loginPage/admin_login.html')
 
 def doctor_login_view(request):
+    # GET isteğinde önceki sayfadan taşınmış mesajlar varsa temizle
+    if request.method == 'GET':
+        try:
+            storage = messages.get_messages(request)
+            for _ in storage:
+                pass
+        except Exception:
+            pass
+
     if request.method == 'POST':
         email = request.POST.get('username')  # Email olarak kullanıcı adı alınıyor
         password = request.POST.get('password')
@@ -74,6 +92,24 @@ def doctor_logout_view(request):
     if 'doctor_name' in request.session:
         del request.session['doctor_name']
     
+    messages.success(request, 'Başarıyla çıkış yaptınız!')
+    return redirect('login_select')
+
+
+def logout_view(request):
+    """Hem admin kullanıcıyı (Django auth) hem de doktor session'ını güvenli şekilde çıkarır."""
+    # Django auth logout (admin/normal kullanıcı için)
+    try:
+        logout(request)
+    except Exception:
+        pass
+
+    # Doktor oturumu varsa temizle
+    if 'doctor_id' in request.session:
+        del request.session['doctor_id']
+    if 'doctor_name' in request.session:
+        del request.session['doctor_name']
+
     messages.success(request, 'Başarıyla çıkış yaptınız!')
     return redirect('login_select')
 

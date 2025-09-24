@@ -146,6 +146,8 @@
         .shadow-sm {
             box-shadow: 0 0.125rem 0.25rem rgba(12, 22, 127, 0.075) !important;
         }
+        .doctor-card img { object-fit: cover; height: 220px; width: 100%; }
+        .doctor-card .badge { font-weight: 500; }
     </style>
 </head>
 <body>
@@ -303,6 +305,38 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kadromuz Section -->
+    <section id="kadromuz" class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold mb-3">Kadromuz</h2>
+                    <p class="lead text-muted">
+                        Uzman doktor kadromuzla tanışın
+                    </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                {% for d in doctors %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card shadow-sm border-0 doctor-card h-100">
+                        <img src="{{ d.image.url }}" alt="{{ d.name }} {{ d.surname }}" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h6 class="mb-1">Dr. {{ d.name }} {{ d.surname }}</h6>
+                            <div class="text-muted small mb-2">{{ d.clinic.name }}</div>
+                            <a href="{% url 'take_appointments' %}" class="btn btn-sm btn-primary">Randevu Al</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <p class="text-muted">Şu an görüntülenecek doktor bulunmuyor.</p>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
