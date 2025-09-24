@@ -487,3 +487,1262 @@ Traceback (most recent call last):
     raise TemplateSyntaxError("Could not parse the remainder: '%s' "
 django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '('/prescriptions/new/')' from 'request.path.endswith('/prescriptions/new/')'
 ERROR 2025-08-19 18:33:41,856 basehttp "GET /dashboard/doctor/ HTTP/1.1" 500 199122
+ERROR 2025-09-23 13:10:04,751 log Internal Server Error: /login/admin/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 708, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] Varolan bir baðlantý uzaktaki bir ana bilgisayar tarafýndan zorla kapatýldý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] Varolan bir baðlantý uzaktaki bir ana bilgisayar tarafýndan zorla kapatýldý)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\login_views.py", line 18, in admin_login_view
+    user = authenticate(request, username=username, password=password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\views\decorators\debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1169, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 79, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] Varolan bir baðlantý uzaktaki bir ana bilgisayar tarafýndan zorla kapatýldý)')
+ERROR 2025-09-23 13:10:04,803 log Internal Server Error: /login/admin/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 782, in _read_bytes
+    data = self._rfile.read(num_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 708, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] Varolan bir baðlantý uzaktaki bir ana bilgisayar tarafýndan zorla kapatýldý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] Varolan bir baðlantý uzaktaki bir ana bilgisayar tarafýndan zorla kapatýldý)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\login_views.py", line 18, in admin_login_view
+    user = authenticate(request, username=username, password=password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\views\decorators\debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1169, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 79, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 73, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 744, in _read_packet
+    packet_header = self._read_bytes(4)
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 788, in _read_bytes
+    raise err.OperationalError(
+django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query ([WinError 10054] Varolan bir baðlantý uzaktaki bir ana bilgisayar tarafýndan zorla kapatýldý)')
+ERROR 2025-09-23 13:10:04,829 basehttp "POST /login/admin/ HTTP/1.1" 500 222817
+ERROR 2025-09-23 13:10:52,358 log Internal Server Error: /login/admin/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 838, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\login_views.py", line 18, in admin_login_view
+    user = authenticate(request, username=username, password=password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\views\decorators\debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+ERROR 2025-09-23 13:11:00,426 log Internal Server Error: /login/admin/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 838, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\login_views.py", line 18, in admin_login_view
+    user = authenticate(request, username=username, password=password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\views\decorators\debug.py", line 42, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\__init__.py", line 76, in authenticate
+    user = backend.authenticate(request, **credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\backends.py", line 42, in authenticate
+    user = UserModel._default_manager.get_by_natural_key(username)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\contrib\auth\base_user.py", line 45, in get_by_natural_key
+    return self.get(**{self.model.USERNAME_FIELD: username})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+ERROR 2025-09-23 13:11:16,676 log Internal Server Error: /login/doctor/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 838, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\doctor_login_view.py", line 12, in doctor_login_view
+    doctor = Doctors.objects.get(email=email)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+ERROR 2025-09-23 13:11:19,003 log Internal Server Error: /login/doctor/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 838, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\doctor_login_view.py", line 12, in doctor_login_view
+    doctor = Doctors.objects.get(email=email)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+ERROR 2025-09-23 13:11:20,291 log Internal Server Error: /login/doctor/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 838, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\doctor_login_view.py", line 12, in doctor_login_view
+    doctor = Doctors.objects.get(email=email)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+ERROR 2025-09-23 13:11:20,505 log Internal Server Error: /login/doctor/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 838, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\doctor_login_view.py", line 12, in doctor_login_view
+    doctor = Doctors.objects.get(email=email)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+ERROR 2025-09-23 13:11:20,815 log Internal Server Error: /login/doctor/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 649, in connect
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 853, in create_connection
+    raise exceptions[0]
+  File "C:\Users\ASUS\anaconda3\Lib\socket.py", line 838, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\doctor_login_view.py", line 12, in doctor_login_view
+    doctor = Doctors.objects.get(email=email)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 431, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 262, in __len__
+    self._fetch_all()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 1324, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\query.py", line 51, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\models\sql\compiler.py", line 1167, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 259, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 235, in _cursor
+    self.ensure_connection()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 218, in ensure_connection
+    with self.wrap_database_errors:
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 219, in ensure_connection
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\base\base.py", line 200, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\db\backends\mysql\base.py", line 234, in get_new_connection
+    connection = Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 361, in __init__
+    self.connect()
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\pymysql\connections.py", line 716, in connect
+    raise exc
+django.db.utils.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý)")
+ERROR 2025-09-23 13:11:20,819 basehttp "POST /login/doctor/ HTTP/1.1" 500 233217
+ERROR 2025-09-23 13:19:28,936 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:28,939 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:37,530 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:37,530 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:38,877 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:38,878 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:39,173 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:39,173 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:39,350 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:39,351 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:39,564 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:39,564 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:39,757 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:39,758 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:43,883 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:43,883 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:44,582 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:44,583 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:44,731 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:44,732 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:44,876 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:44,877 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:19:45,041 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:19:45,041 basehttp "POST /patients/8/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:36,294 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:36,295 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:37,110 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:37,110 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:37,593 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:37,593 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:37,766 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:37,767 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:37,954 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:37,954 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:38,158 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:38,160 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:38,377 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:38,377 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:38,596 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:38,597 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:38,897 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:38,897 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:39,161 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:39,162 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:39,397 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:39,398 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:39,631 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:39,631 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:39,885 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:39,886 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:40,150 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:40,150 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:41,087 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:41,087 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:41,368 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:41,369 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:31:41,615 log Internal Server Error: /patients/3/update/
+ERROR 2025-09-23 13:31:41,616 basehttp "POST /patients/3/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:23,545 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:23,545 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:24,345 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:24,346 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:24,763 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:24,763 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:24,959 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:24,959 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:25,171 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:25,172 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:25,373 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:25,374 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:25,575 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:25,575 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:25,733 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:25,734 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:25,918 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:25,919 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:26,072 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:26,073 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:34:26,224 log Internal Server Error: /patients/4/update/
+ERROR 2025-09-23 13:34:26,224 basehttp "POST /patients/4/update/ HTTP/1.1" 500 37
+ERROR 2025-09-23 13:37:26,898 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:26,898 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:27,685 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:27,685 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:27,960 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:27,961 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:28,136 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:28,137 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:28,342 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:28,342 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:28,564 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:28,565 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:28,716 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:28,717 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:57,453 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:57,454 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:58,052 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:58,052 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:58,916 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:58,917 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:59,111 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:59,112 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:37:59,357 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:37:59,358 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:38:00,086 log Internal Server Error: /patients/8/update/
+ERROR 2025-09-23 13:38:00,086 basehttp "POST /patients/8/update/ HTTP/1.1" 500 114
+ERROR 2025-09-23 13:53:41,734 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-23 13:53:41,738 basehttp "POST /patients/10/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:15:24,478 log Internal Server Error: /patients/
+ERROR 2025-09-24 14:15:24,483 basehttp "POST /patients/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:27,066 log Internal Server Error: /patients/
+ERROR 2025-09-24 14:15:27,066 basehttp "POST /patients/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:50,781 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:50,782 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:52,404 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:52,405 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:52,878 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:52,879 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:53,051 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:53,052 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:53,222 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:53,223 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:53,476 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:53,477 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:53,669 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:53,669 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:53,890 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:53,894 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:54,050 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:54,050 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:54,229 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:54,229 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:54,418 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:54,418 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:54,679 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:54,679 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:54,950 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:54,950 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:15:55,530 log Internal Server Error: /patients/10/update/
+ERROR 2025-09-24 14:15:55,530 basehttp "POST /patients/10/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:33,577 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:33,578 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:34,158 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:34,158 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:34,450 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:34,450 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:34,639 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:34,640 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:34,827 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:34,827 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:35,002 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:35,002 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:35,157 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:35,158 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:35,353 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:35,353 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:35,497 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:35,499 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:35,657 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:35,657 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:35,834 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:35,837 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:35,987 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:35,987 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:36,161 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:36,161 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:36,337 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:36,337 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:20:36,511 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:20:36,511 basehttp "POST /patients/6/update/ HTTP/1.1" 500 37
+ERROR 2025-09-24 14:24:12,448 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:12,448 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:13,306 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:13,307 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:13,617 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:13,619 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:13,851 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:13,852 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:14,067 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:14,067 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:14,270 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:14,270 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:14,519 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:14,519 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:14,714 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:14,714 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:14,927 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:14,928 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:15,174 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:15,175 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:15,384 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:15,385 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:15,654 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:15,655 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:15,919 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:15,920 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:16,142 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:16,143 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:16,354 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:16,355 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:16,556 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:16,557 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:16,729 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:16,730 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:16,924 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:16,925 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:17,117 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:17,118 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:17,311 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:17,311 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:17,502 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:17,502 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:17,667 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:17,667 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:17,823 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:17,823 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:18,002 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:18,004 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:18,159 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:18,159 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:18,314 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:18,314 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:18,488 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:18,488 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:18,622 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:18,622 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:18,796 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:18,797 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:18,942 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:18,944 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:19,138 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:19,139 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 14:24:19,245 log Internal Server Error: /patients/6/update/
+ERROR 2025-09-24 14:24:19,245 basehttp "POST /patients/6/update/ HTTP/1.1" 500 114
+ERROR 2025-09-24 15:24:10,279 log Internal Server Error: /patients/
+ERROR 2025-09-24 15:24:10,282 basehttp "POST /patients/ HTTP/1.1" 500 114
+ERROR 2025-09-24 15:24:54,254 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\index_views.py", line 16, in index_view
+    return render(request, 'index.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 694, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'take_appointments' not found. 'take_appointments' is not a valid view function or pattern name.
+ERROR 2025-09-24 15:24:54,264 basehttp "GET / HTTP/1.1" 500 125939
+ERROR 2025-09-24 15:24:54,405 log Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\Desktop\HastaneYonetim\HastaneYonetimProjesi\hastane\views\index_views.py", line 16, in index_view
+    return render(request, 'index.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\template\defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS\anaconda3\Lib\site-packages\django\urls\resolvers.py", line 694, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'take_appointments' not found. 'take_appointments' is not a valid view function or pattern name.
+ERROR 2025-09-24 15:24:54,407 basehttp "GET / HTTP/1.1" 500 125665

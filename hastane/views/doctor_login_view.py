@@ -4,6 +4,15 @@ from django.contrib.auth.hashers import check_password
 from hastane.models.doctors_model import Doctors
 
 def doctor_login_view(request):
+    # GET isteğinde eski mesajları tüketip temizle
+    if request.method == 'GET':
+        try:
+            storage = messages.get_messages(request)
+            for _ in storage:
+                pass
+        except Exception:
+            pass
+
     if request.method == 'POST':
         email = request.POST.get('username')
         password = request.POST.get('password')
